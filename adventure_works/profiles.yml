@@ -1,0 +1,26 @@
+adventure_works:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: "{{ env_var('DBT_DB_ACCOUNT') }}"
+
+      # User/password auth
+      user: "{{ env_var('DBT_DEV_USER') }}"
+      password: "{{ env_var('DBT_DEV_PASSWORD') }}"
+
+      role: "{{ env_var('DBT_DB_ROLE') }}"  # CERTO
+
+      database: "{{ env_var('DBT_DB_DATABASE') }}"
+      warehouse: "{{ env_var('DBT_DB_WAREHOUSE') }}"
+      schema: "{{ env_var('DBT_DEV_SCHEMA') }}"
+      threads: 4
+      client_session_keep_alive: False
+      query_tag: ''
+
+      # optional settings
+      connect_retries: 0
+      connect_timout: 10
+      retry_on_database_error: False
+      retry_all: False
+      reuse_connections: False
