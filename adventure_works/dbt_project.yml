@@ -18,6 +18,7 @@ seed-paths: ["seeds"]
 macro-paths: ["macros"]
 snapshot-paths: ["snapshots"]
 
+target-path: "target"  # directory which will store compiled SQL files
 clean-targets:         # directories to be removed by `dbt clean`
   - "target"
   - "dbt_packages"
@@ -29,8 +30,31 @@ clean-targets:         # directories to be removed by `dbt clean`
 # In this example config, we tell dbt to build all models in the example/
 # directory as views. These settings can be overridden in the individual model
 # files using the `{{ config(...) }}` macro.
+
 models:
   adventure_works:
     # Config indicated by + and applies to all files under models/example/
-    example:
-      +materialized: view
+
+    sales:
+      +tags: sales
+      staging:
+        +materialized: view
+        +schema: staging
+      intermediate:
+        +materialized: ephemeral
+        +schema: intermediate
+      mart:
+        +materialized: table
+        +schema: marts
+
+    purchases:
+      +tags: purchases
+      staging:
+        +materialized: view
+        +schema: staging
+      intermediate:
+        +materialized: ephemeral
+        +schema: intermediate
+      mart:
+        +materialized: table
+        +schema: marts
