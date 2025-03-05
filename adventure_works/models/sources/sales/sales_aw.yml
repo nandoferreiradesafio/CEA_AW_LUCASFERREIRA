@@ -1,0 +1,706 @@
+version: 2
+
+sources:
+  - name: RAW_ADVENTURE_WORKS
+    database: FEA24_11
+    schema: RAW_ADVENTURE_WORKS
+    description: >
+      Fonte de dados bruta do Adventure Works.
+    config:
+      enabled: true
+    tables:
+      - name: COUNTRYREGIONCURRENCY
+        description: >
+          Códigos de moeda ISO de mapeamento de tabela de referência cruzada para um país ou região.
+        columns:
+          - name: COUNTRYREGIONCODE
+            description: >
+              Código de duas letras que representa o país ou região. Esta é a chave primária.
+          - name: CURRENCYCODE
+            description: >
+              Código de moeda ISO de três letras.
+          - name: MODIFIEDDATE
+            description: >
+              Data e hora em que a linha foi modificada pela última vez.
+
+      - name: CREDITCARD
+        description: >
+          Informações sobre cartões de crédito usados para pedidos de vendas.
+        columns:
+          - name: CREDITCARDID
+            description: >
+              Número exclusivo para identificar o cartão de crédito.
+          - name: CARDTYPE
+            description: >
+              Tipo de cartão de crédito.
+          - name: CARDNUMBER
+            description: >
+              Número do cartão de crédito.
+          - name: EXPMONTH
+            description: >
+              Mês de vencimento do cartão de crédito.
+          - name: EXPYEAR
+            description: >
+              Ano de vencimento do cartão de crédito.
+          - name: MODIFIEDDATE
+            description: >
+              Data e hora em que a linha foi modificada pela última vez.
+
+      - name: CURRENCY
+        description: >
+          Informações sobre moedas.
+        columns:
+          - name: CURRENCYCODE
+            description: >
+              Código de moeda ISO de três letras. Esta é a chave primária.
+          - name: NAME
+            description: >
+              Nome da moeda.
+          - name: MODIFIEDDATE
+            description: >
+              Data e hora em que a linha foi modificada pela última vez.
+
+      - name: CURRENCYRATE
+        description: >
+          Taxas de câmbio entre moedas.
+        columns:
+          - name: CURRENCYRATEID
+            description: >
+              Número exclusivo para identificar a taxa de câmbio.
+          - name: CURRENCYRATEDATE
+            description: >
+              Data da taxa de câmbio.
+          - name: FROMCURRENCYCODE
+            description: >
+              Código de moeda ISO de três letras da moeda de origem.
+          - name: TOCURRENCYCODE
+            description: >
+              Código de moeda ISO de três letras da moeda de destino.
+          - name: AVERAGERATE
+            description: >
+              Taxa média de câmbio para o dia.
+          - name: ENDOFDAYRATE
+            description: >
+              Data de término da taxa de câmbio.
+          - name: MODIFIEDDATE
+            description: >
+              Data e hora em que a linha foi modificada pela última vez.
+
+      - name: CUSTOMER
+        description: >
+          Informações sobre clientes.
+        columns:
+          - name: CUSTOMERID
+            description: >
+              Número exclusivo para identificar o cliente.
+          - name: PERSONID
+            description: >
+              Número exclusivo para identificar a pessoa.
+          - name: STOREID
+            description: >
+              Número exclusivo para identificar a loja.
+          - name: TERRITORYID
+            description: >
+              Número exclusivo para identificar o território.
+          - name: ROWGUID
+            description: >
+              Identificador exclusivo global para a linha.
+          - name: MODIFIEDDATE
+            description: >
+              Data e hora em que a linha foi modificada pela última vez.
+
+      - name: PERSONCREDITCARD
+        description: >
+          Relacionamento entre pessoas e cartões de crédito.
+        columns:
+          - name: BUSINESSENTITYID
+            description: >
+              Número exclusivo para identificar a entidade de negócios.
+          - name: CREDITCARDID
+            description: >
+              Número exclusivo para identificar o cartão de crédito.
+          - name: MODIFIEDDATE
+            description: >
+              Data e hora em que a linha foi modificada pela última vez.
+
+      - name: SALESORDERDETAIL
+        description: >
+          Detalhes do pedido de vendas.
+        columns:
+          - name: SALESORDERID
+            description: >
+              Número exclusivo para identificar o pedido de vendas.
+          - name: SALESORDERDETAILID
+            description: >
+              Número exclusivo para identificar o detalhe do pedido de vendas.
+          - name: CARRIERTRACKINGNUMBER
+            description: >
+              Número de rastreamento do transportador.
+          - name: ORDERQTY
+            description: >
+              Quantidade de itens pedidos.
+          - name: PRODUCTID
+            description: >
+              Número exclusivo para identificar o produto.
+          - name: SPECIALOFFERID
+            description: >
+              Número exclusivo para identificar a oferta especial.
+          - name: UNITPRICE
+            description: >
+              Preço unitário do produto.
+          - name: UNITPRICEDESPERDISCOUNT
+            description: >
+              Preço unitário do produto após desconto.
+          - name: ROWGUID
+            description: >
+              Identificador exclusivo global para a linha.
+          - name: MODIFIEDDATE
+            description: >
+              Data e hora em que a linha foi modificada pela última vez.
+
+      - name: SALESORDERHEADER
+        description: >
+          Cabeçalho do pedido de vendas.
+        columns:
+          - name: SALESORDERID
+            description: >
+              Número exclusivo para identificar o pedido de vendas.
+          - name: REVISIONNUMBER
+            description: >
+              Número de revisão do pedido de vendas.
+          - name: ORDERDATE
+            description: >
+              Data do pedido de vendas.
+          - name: DUEDATE
+            description: >
+              Data de vencimento do pedido de vendas.
+          - name: SHIPDATE
+            description: >
+              Data de envio do pedido de vendas.
+          - name: STATUS
+            description: >
+              Status do pedido de vendas.
+          - name: ONLINEORDERFLAG
+            description: >
+              Indica se o pedido de vendas foi feito online.
+          - name: PURCHASEORDERNUMBER
+            description: >
+              Número de ordem de compra do pedido de vendas.
+          - name: ACCOUNTNUMBER
+            description: >
+              Número da conta do pedido de vendas.
+          - name: CUSTOMERID
+            description: >
+              Número exclusivo para identificar o cliente.
+          - name: SALESPERSONID
+            description: >
+              Número exclusivo para identificar o vendedor.
+          - name: TERRITORYID
+            description: >
+              Número exclusivo para identificar o território.
+          - name: BILLTOADDRESSID
+            description: >
+              Número exclusivo para identificar o endereço de cobrança.
+          - name: SHIPTOADDRESSID
+            description: >
+              Número exclusivo para identificar o endereço de envio.
+          - name: SHIPMETHODID
+            description: >
+              Número exclusivo para identificar o método de envio.
+          - name: CREDITCARDID
+            description: >
+              Número exclusivo para identificar o cartão de crédito.
+          - name: CREDITCARDAPPROVALCODE
+            description: >
+              Código de aprovação do cartão de crédito.
+          - name: CURRENCYRATEID
+            description: >
+              Número exclusivo para identificar a taxa de câmbio.
+          - name: SUBTOTAL
+            description: >
+              Subtotal do pedido de vendas.
+          - name: TAXAMT
+            description: >
+              Valor do imposto sobre vendas.
+          - name: FREIGHT
+            description: >
+              Valor do frete.
+          - name: TOTALDUE
+            description: >
+              Valor total devido.
+          - name: COMMENT
+            description: >
+              Comentário sobre o pedido de vendas.
+          - name: ROWGUID
+            description: >
+              Identificador exclusivo global para a linha.
+          - name: MODIFIEDDATE
+            description: >
+              Data e hora em que a linha foi modificada pela última vez.
+
+      - name: SALESORDERHEADERSALESREASON
+        description: >
+          Relacionamento entre cabeçalho de pedido de vendas e motivo de vendas.
+        columns:
+          - name: SALESORDERID
+            description: >
+              Número exclusivo para identificar o pedido de vendas.
+          - name: SALESREASONID
+            description: >
+              Número exclusivo para identificar o motivo de vendas.
+          - name: MODIFIEDDATE
+            description: >
+              Data e hora em que a linha foi modificada pela última vez.
+
+      - name: SALESPERSON
+        description: >
+          Informações sobre vendedores.
+        columns:
+          - name: BUSINESSENTITYID
+            description: >
+              Número exclusivo para identificar o vendedor.
+          - name: TERRITORYID
+            description: >
+              Número exclusivo para identificar o território.
+          - name: SALESQUOTA
+            description: >
+              Cota de vendas do vendedor.
+          - name: BONUS
+            description: >
+              Bônus do vendedor.
+          - name: COMMISSIONPCT
+            description: >
+              Porcentagem de comissão do vendedor.
+          - name: SALESYTD
+            description: >
+              Vendas do ano até a data.
+          - name: SALESLASTYEAR
+            description: >
+              Pedidos de vendas do ano até a data.
+          - name: ROWGUID
+            description: >
+              Identificador exclusivo global para a linha.
+          - name: MODIFIEDDATE
+            description: >
+              Data e hora em que a linha foi modificada pela última vez.
+
+      - name: SALESPERSONQUOTAHISTORY
+        description: >
+          Histórico de cota de vendas do vendedor.
+        columns:
+          - name: BUSINESSENTITYID
+            description: >
+              Número exclusivo para identificar o vendedor.
+          - name: QUOTA_DATE
+            description: >
+              Data da cota de vendas.
+          - name: SALESQUOTA
+            description: >
+              Cota de vendas do vendedor.
+          - name: ROWGUID
+            description: >
+              Identificador exclusivo global para a linha.
+          - name: MODIFIEDDATE
+            description: >
+              Data e hora em que a linha foi modificada pela última vez.
+
+      - name: SALESREASON
+        description: >
+          Motivos de vendas.
+        columns:
+          - name: SALESREASONID
+            description: >
+              Número exclusivo para identificar o motivo de vendas.
+          - name: NAME
+            description: >
+              Nome do motivo de vendas.
+          - name: REASONTYPE
+            description: >
+              Tipo de motivo de vendas.
+          - name: MODIFIEDDATE
+            description: >
+              Data e hora em que a linha foi modificada pela última vez.
+
+      - name: SALESTAXRATE
+        description: >
+          Taxas de imposto sobre vendas.
+        columns:
+          - name: SALESTAXRATEID
+            description: >
+              Número exclusivo para identificar a taxa de imposto sobre vendas.
+          - name: STATEPROVINCEID
+            description: >
+              Número exclusivo para identificar o estado ou província.
+          - name: TAXTYPE
+            description: >
+              Tipo de imposto.
+          - name: TAXRATE
+            description: >
+              Taxa de imposto.
+          - name: NAME
+            description: >
+              Nome do imposto sobre vendas.
+          - name: ROWGUID
+            description: >
+              Identificador exclusivo global para a linha.
+          - name: MODIFIEDDATE
+            description: >
+              Data e hora em que a linha foi modificada pela última vez.
+
+      - name: SALESTERRITORY
+        description: >
+          Territórios de vendas.
+        columns:
+          - name: TERRITORYID
+            description: >
+              Número exclusivo para identificar o território.
+          - name: NAME
+            description: >
+              Nome do território.
+          - name: COUNTRYREGIONCODE
+            description: >
+              Código de duas letras que representa o país ou região.
+          - name: "group"
+            description: >
+              Grupo de territórios.
+          - name: SALESYTD
+            description: >
+              Vendas do ano até a data.
+          - name: SALESLASTYEAR
+            description: >
+              Pedidos de vendas do ano até a data.
+          - name: COSTYTD
+            description: >
+              Custo do ano até a data.
+          - name: COSTLASTYEAR
+            description: >
+              Custo do ano anterior.
+          - name: ROWGUID
+            description: >
+              Identificador exclusivo global para a linha.
+          - name: MODIFIEDDATE
+            description: >
+              Data e hora em que a linha foi modificada pela última vez.
+
+      - name: SALESTERRITORYHISTORY
+        description: >
+          Histórico de territórios de vendas.
+        columns:
+          - name: BUSINESSENTITYID
+            description: >
+              Número exclusivo para identificar a entidade de negócios.
+          - name: TERRITORYID
+            description: >
+              Número exclusivo para identificar o território.
+          - name: STARTDATE
+            description: >
+              Data de início do território.
+          - name: ENDDATE
+            description: >
+              Data de término do território.
+          - name: ROWGUID
+            description: >
+              Identificador exclusivo global para a linha.
+          - name: MODIFIEDDATE
+            description: >
+              Data e hora em que a linha foi modificada pela última vez.
+
+      - name: SHOPPINGCARTITEM
+        description: >
+          Itens do carrinho de compras.
+        columns:
+          - name: SHOPPINGCARTITEMID
+            description: >
+              Número exclusivo para identificar o item do carrinho de compras.
+          - name: SHOPPINGCARTID
+            description: >
+              Número exclusivo para identificar o carrinho de compras.
+          - name: QUANTITY
+            description: >
+              Quantidade do item.
+          - name: PRODUCTID
+            description: >
+              Número exclusivo para identificar o produto.
+          - name: DATECREATED
+            description: >
+              Data de criação do item do carrinho de compras.
+          - name: MODIFIEDDATE
+            description: >
+              Data e hora em que a linha foi modificada pela última vez.
+
+      - name: SPECIALOFFER
+        description: >
+          Ofertas especiais.
+        columns:
+          - name: SPECIALOFFERID
+            description: >
+              Número exclusivo para identificar a oferta especial.
+          - name: DESCRIPTION
+            description: >
+              Descrição da oferta especial.
+          - name: DISCOUNTPCT
+            description: >
+              Porcentagem de desconto da oferta especial.
+          - name: TYPE
+            description: >
+              Tipo de oferta especial.
+          - name: CATEGORY
+            description: >
+              Categoria da oferta especial.
+          - name: STARTDATE
+            description: >
+              Data de início da oferta especial.
+          - name: ENDDATE
+            description: >
+              Data de término da oferta especial.
+          - name: MINQTY
+            description: >
+              Quantidade mínima para a oferta especial.
+          - name: MAXQTY
+            description: >
+              Quantidade máxima para a oferta especial.
+          - name: ROWGUID
+            description: >
+              Identificador exclusivo global para a linha.
+          - name: MODIFIEDDATE
+            description: >
+              Data e hora em que a linha foi modificada pela última vez.
+
+      - name: SPECIALOFFERPRODUCT
+        description: >
+          Relacionamento entre ofertas especiais e produtos.
+        columns:
+          - name: SPECIALOFFERID
+            description: >
+              Número exclusivo para identificar a oferta especial.
+          - name: PRODUCTID
+            description: >
+              Número exclusivo para identificar o produto.
+          - name: ROWGUID
+            description: >
+              Identificador exclusivo global para a linha.
+          - name: MODIFIEDDATE
+            description: >
+              Data e hora em que a linha foi modificada pela última vez.
+
+      - name: STORE
+        description: >
+          Informações sobre lojas.
+        columns:
+          - name: BUSINESSENTITYID
+            description: >
+              Número exclusivo para identificar a entidade de negócios.
+          - name: NAME
+            description: >
+              Nome da loja.
+          - name: SALESPERSONID
+            description: >
+              Número exclusivo para identificar o vendedor.
+          - name: DEMOGRAPHICS
+            description: >
+              Dados demográficos da loja.
+          - name: ROWGUID
+            description: >
+              Identificador exclusivo global para a linha.
+          - name: MODIFIEDDATE
+            description: >
+              Data e hora em que a linha foi modificada pela última vez.
+
+models:
+  - name: stg_sales__contries_regions_currencies
+    description: >
+      Códigos de moeda ISO de mapeamento de tabela de referência cruzada para um país ou região.
+    columns:
+      - name: sk_country_region_currency
+        description: >
+          Chave substituta da tabela.
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_sales__credit_cards
+    description: >
+      Informações sobre cartões de crédito usados para pedidos de vendas.
+    columns:
+      - name: pk_credit_card
+        description: >
+          Chave substituta da tabela.
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_sales__currencies
+    description: >
+      Informações sobre moedas.
+    columns:
+      - name: pk_currency
+        description: >
+          Chave primária da tabela.
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_sales__currency_rate
+    description: >
+      Taxas de câmbio entre moedas.
+    columns:
+      - name: pk_currency_rate
+        description: >
+          Chave substituta da tabela.
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_sales__customers
+    description: >
+      Informações sobre clientes.
+    columns:
+      - name: pk_customer
+        description: >
+          Chave primária da tabela.
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_sales__person_credit_cards
+    description: >
+      Relacionamento entre pessoas e cartões de crédito.
+    columns:
+      - name: sk_person_credit_card
+        description: >
+          Chave substituta da tabela.
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_sales__sales_order_detail
+    description: >
+      Detalhes do pedido de vendas.
+    columns:
+      - name: pk_sales_order_detail
+        description: >
+          Chave substituta da tabela.
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_sales__sales_order_header
+    description: >
+      Cabeçalho do pedido de vendas.
+    columns:
+      - name: pk_sales_order_header
+        description: >
+          Chave substituta da tabela.
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_sales__sales_order_header_sales_reason
+    description: >
+      Relacionamento entre cabeçalho de pedido de vendas e motivo de vendas.
+    columns:
+      - name: sk_sales_order_header_sales_reason
+        description: >
+          Chave substituta da tabela.
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_sales__sales_person_quota_history
+    description: >
+      Histórico de cota de vendas do vendedor.
+    columns:
+      - name: sk_sales_person_quota_history
+        description: >
+          Chave substituta da tabela.
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_sales__sales_reason
+    description: >
+      Motivos de vendas.
+    columns:
+      - name: pk_sales_reason
+        description: >
+          Chave primária da tabela.
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_sales__sales_tax_rate
+    description: >
+      Taxas de imposto sobre vendas.
+    columns:
+      - name: pk_sales_tax_rate
+        description: >
+          Chave primária da tabela.
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_sales__sales_territory
+    description: >
+      Territórios de vendas.
+    columns:
+      - name: pk_sales_territory
+        description: >
+          Chave primária da tabela.
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_sales__sales_territory_history
+    description: >
+      Histórico de territórios de vendas.
+    columns:
+      - name: sk_sales_territory_history
+        description: >
+          Chave substituta da tabela.
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_sales__shopping_cart_itens
+    description: >
+      Itens do carrinho de compras.
+    columns:
+      - name: pk_shopping_cart_item
+        description: >
+          Chave primária da tabela.
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_sales__special_offers
+    description: >
+      Ofertas especiais.
+    columns:
+      - name: pk_special_offer
+        description: >
+          Chave primária da tabela.
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_sales__special_offer_products
+    description: >
+      Relacionamento entre ofertas especiais e produtos.
+    columns:
+      - name: sk_special_offer_product
+        description: >
+          Chave substituta da tabela.
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_sales__stores
+    description: >
+      Informações sobre lojas.
+    columns:
+      - name: pk_store
+        description: >
+          Chave primária da tabela.
+        tests:
+          - unique
+          - not_null
