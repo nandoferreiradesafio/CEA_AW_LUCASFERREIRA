@@ -42,7 +42,67 @@ models:
     sources:
       +materialized: table
       +schema: raw
-    
+
+    dbo:
+      +tags: dbo
+      staging: &staging
+        +materialized: view
+        +schema: dbo
+      intermediate: &intermediate
+        +materialized: ephemeral
+        +schema: dbo
+      mart: &mart
+        +materialized: table
+        +schema: dbo
+
+    human_resources:
+      +tags: human_resources
+      staging: &staging
+        +materialized: view
+        +schema: human_resources
+      intermediate: &intermediate
+        +materialized: ephemeral
+        +schema: human_resources
+      mart: &mart
+        +materialized: table
+        +schema: human_resources
+
+    person:
+      +tags: person
+      staging: &staging
+        +materialized: view
+        +schema: person
+      intermediate: &intermediate
+        +materialized: ephemeral
+        +schema: person
+      mart: &mart
+        +materialized: table
+        +schema: person
+
+    production:
+      +tags: production
+      staging: &staging
+        +materialized: view
+        +schema: production
+      intermediate: &intermediate
+        +materialized: ephemeral
+        +schema: production
+      mart: &mart
+        +materialized: table
+        +schema: production
+
+    purchases:
+      +tags: purchases
+      staging: &staging
+        +materialized: view
+        +schema: purchases
+      intermediate: &intermediate
+        +materialized: ephemeral
+        +schema: purchases
+      mart: &mart
+        +materialized: table
+        +schema: purchases
+
     sales:
       +tags: sales
       staging: &staging
@@ -54,12 +114,3 @@ models:
       mart: &mart
         +materialized: table
         +schema: sales
-
-    purchases:
-      +tags: purchases
-      staging: 
-        <<: *staging
-      intermediate:
-        <<: *intermediate
-      mart:
-        <<: *mart
