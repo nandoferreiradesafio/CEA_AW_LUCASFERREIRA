@@ -35,26 +35,31 @@ models:
   adventure_works:
     # Config indicated by + and applies to all files under models/example/
 
+    conformed_dimensions:
+      +materialized: table
+      +schema: marts
+    
+    sources:
+      +materialized: table
+      +schema: raw
+    
     sales:
       +tags: sales
-      staging:
+      staging: &staging
         +materialized: view
-        +schema: staging
-      intermediate:
+        +schema: sales
+      intermediate: &intermediate
         +materialized: ephemeral
-        +schema: intermediate
-      mart:
+        +schema: sales
+      mart: &mart
         +materialized: table
-        +schema: marts
+        +schema: sales
 
     purchases:
       +tags: purchases
-      staging:
-        +materialized: view
-        +schema: staging
+      staging: 
+        <<: *staging
       intermediate:
-        +materialized: ephemeral
-        +schema: intermediate
+        <<: *intermediate
       mart:
-        +materialized: table
-        +schema: marts
+        <<: *mart
