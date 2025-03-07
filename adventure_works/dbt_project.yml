@@ -33,7 +33,13 @@ clean-targets:         # directories to be removed by `dbt clean`
 
 models:
   adventure_works:
-    # Config indicated by + and applies to all files under models/example/
+    # Configurações globais de materialização para reutilização
+    staging: &staging
+      +materialized: view
+    intermediate: &intermediate
+      +materialized: ephemeral
+    mart: &mart
+      +materialized: table
 
     conformed_dimensions:
       +materialized: table
@@ -45,72 +51,42 @@ models:
 
     dbo:
       +tags: dbo
-      staging: &staging
-        +materialized: view
-        +schema: dbo
-      intermediate: &intermediate
-        +materialized: ephemeral
-        +schema: dbo
-      mart: &mart
-        +materialized: table
-        +schema: dbo
+      staging: *staging
+      intermediate: *intermediate
+      mart: *mart
+      +schema: dbo
 
     human_resources:
       +tags: human_resources
-      staging: &staging
-        +materialized: view
-        +schema: human_resources
-      intermediate: &intermediate
-        +materialized: ephemeral
-        +schema: human_resources
-      mart: &mart
-        +materialized: table
-        +schema: human_resources
+      staging: *staging
+      intermediate: *intermediate
+      mart: *mart
+      +schema: human_resources
 
     person:
       +tags: person
-      staging: &staging
-        +materialized: view
-        +schema: person
-      intermediate: &intermediate
-        +materialized: ephemeral
-        +schema: person
-      mart: &mart
-        +materialized: table
-        +schema: person
+      staging: *staging
+      intermediate: *intermediate
+      mart: *mart
+      +schema: person
 
     production:
       +tags: production
-      staging: &staging
-        +materialized: view
-        +schema: production
-      intermediate: &intermediate
-        +materialized: ephemeral
-        +schema: production
-      mart: &mart
-        +materialized: table
-        +schema: production
+      staging: *staging
+      intermediate: *intermediate
+      mart: *mart
+      +schema: production
 
     purchases:
       +tags: purchases
-      staging: &staging
-        +materialized: view
-        +schema: purchases
-      intermediate: &intermediate
-        +materialized: ephemeral
-        +schema: purchases
-      mart: &mart
-        +materialized: table
-        +schema: purchases
+      staging: *staging
+      intermediate: *intermediate
+      mart: *mart
+      +schema: purchases
 
     sales:
       +tags: sales
-      staging: &staging
-        +materialized: view
-        +schema: sales
-      intermediate: &intermediate
-        +materialized: ephemeral
-        +schema: sales
-      mart: &mart
-        +materialized: table
-        +schema: sales
+      staging: *staging
+      intermediate: *intermediate
+      mart: *mart
+      +schema: sales
