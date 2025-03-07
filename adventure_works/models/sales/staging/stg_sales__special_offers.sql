@@ -1,24 +1,24 @@
 with
-    source as (
+    special_offer as (
         select *
         from {{ source('RAW_ADVENTURE_WORKS', 'SPECIALOFFER') }}
     )
 
-    , renamed as (
+    , renomear as (
         select
-            SpecialOfferID as pk_special_offer
-            , description as description_special_offer
-            , DiscountPct as discount_pct
-            , type as type_special_offer
-            , category as category_special_offer
-            , MinQty as min_qty
-            , MaxQty as max_qty
-            , rowguid
-            , StartDate as start_date
-            , EndDate as end_date
-            , ModifiedDate as modified_date
-        from source
+            try_cast(specialofferid as int) as pk_oferta_especial
+            , try_cast(description as string) as descricao_oferta_especial
+            , try_cast(discountpct as double) as desconto_pct
+            , try_cast(type as string) as tipo_oferta_especial
+            , try_cast(category as string) as categoria_oferta_especial
+            , try_cast(minqty as int) as qtd_minima
+            , try_cast(maxqty as int) as qtd_maxima
+            , try_cast(rowguid as string) as rowguid
+            , try_cast(startdate as date) as data_inicio
+            , try_cast(enddate as date) as data_fim
+            , try_cast(modifieddate as date) as data_modificacao
+        from special_offer
     )
 
 select *
-from renamed
+from renomear

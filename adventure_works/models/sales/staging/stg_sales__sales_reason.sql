@@ -1,17 +1,17 @@
 with
-    source as (
+    sales_reason as (
         select *
         from {{ source('RAW_ADVENTURE_WORKS', 'SALESREASON') }}
     )
 
-    , renamed as (
+    , renomear as (
         select
-            SalesReasonID as pk_sales_reason
-            , name as name_sales_reason
-            , ReasonType as reason_type
-            , ModifiedDate as modified_date
-        from source
+            try_cast(salesreasonid as int) as pk_razao_vendas
+            , try_cast(name as string) as nome_razao_vendas
+            , try_cast(reasontype as string) as tipo_razao
+            , try_cast(modifieddate as date) as data_modificacao
+        from sales_reason
     )
 
 select *
-from renamed
+from renomear

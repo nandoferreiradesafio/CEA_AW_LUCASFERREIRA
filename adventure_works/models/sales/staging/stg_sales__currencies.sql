@@ -1,16 +1,16 @@
 with
-    source as (
+    currency as (
         select *
         from {{ source('RAW_ADVENTURE_WORKS', 'CURRENCY') }}
     )
 
-    , renamed as (
+    , renomear as (
         select
-            CurrencyCode as pk_currency
-            , name as namae_currency
-            , ModifiedDate as modified_date
-        from source
+            try_cast(currencycode as string) as pk_moeda
+            , try_cast(name as string) as nome_moeda
+            , try_cast(modifieddate as date) as data_modificacao
+        from currency
     )
 
 select *
-from renamed
+from renomear

@@ -511,7 +511,7 @@ models:
     description: >
       Códigos de moeda ISO de mapeamento de tabela de referência cruzada para um país ou região.
     columns:
-      - name: sk_country_region_currency
+      - name: sk_regiao_pais_moeda
         description: >
           Chave substituta da tabela.
         tests:
@@ -522,7 +522,7 @@ models:
     description: >
       Informações sobre cartões de crédito usados para pedidos de vendas.
     columns:
-      - name: pk_credit_card
+      - name: pk_cartao_credito
         description: >
           Chave substituta da tabela.
         tests:
@@ -533,7 +533,7 @@ models:
     description: >
       Informações sobre moedas.
     columns:
-      - name: pk_currency
+      - name: pk_moeda
         description: >
           Chave primária da tabela.
         tests:
@@ -544,7 +544,7 @@ models:
     description: >
       Taxas de câmbio entre moedas.
     columns:
-      - name: pk_currency_rate
+      - name: pk_taxa_cambio
         description: >
           Chave substituta da tabela.
         tests:
@@ -555,7 +555,7 @@ models:
     description: >
       Informações sobre clientes.
     columns:
-      - name: pk_customer
+      - name: pk_cliente
         description: >
           Chave primária da tabela.
         tests:
@@ -566,7 +566,7 @@ models:
     description: >
       Relacionamento entre pessoas e cartões de crédito.
     columns:
-      - name: sk_person_credit_card
+      - name: sk_pessoa_cartao_credito
         description: >
           Chave substituta da tabela.
         tests:
@@ -577,18 +577,7 @@ models:
     description: >
       Detalhes do pedido de vendas.
     columns:
-      - name: pk_sales_order_detail
-        description: >
-          Chave substituta da tabela.
-        tests:
-          - unique
-          - not_null
-
-  - name: stg_sales__sales_order_header
-    description: >
-      Cabeçalho do pedido de vendas.
-    columns:
-      - name: pk_sales_order_header
+      - name: pk_detalhe_pedido_venda
         description: >
           Chave substituta da tabela.
         tests:
@@ -599,7 +588,18 @@ models:
     description: >
       Relacionamento entre cabeçalho de pedido de vendas e motivo de vendas.
     columns:
-      - name: sk_sales_order_header_sales_reason
+      - name: sk_pedido_venda_movito_venda
+        description: >
+          Chave substituta da tabela.
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_sales__sales_order_header
+    description: >
+      Cabeçalho do pedido de vendas.
+    columns:
+      - name: pk_pedido_venda
         description: >
           Chave substituta da tabela.
         tests:
@@ -610,9 +610,20 @@ models:
     description: >
       Histórico de cota de vendas do vendedor.
     columns:
-      - name: sk_sales_person_quota_history
+      - name: sk_historico_quota_vendedor
         description: >
           Chave substituta da tabela.
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_sales__sales_persons
+    description: >
+      Informações sobre vendedores.
+    columns:
+      - name: sk_vendedor
+        description: >
+          Chave primária da tabela.
         tests:
           - unique
           - not_null
@@ -621,7 +632,7 @@ models:
     description: >
       Motivos de vendas.
     columns:
-      - name: pk_sales_reason
+      - name: pk_razao_vendas
         description: >
           Chave primária da tabela.
         tests:
@@ -632,18 +643,7 @@ models:
     description: >
       Taxas de imposto sobre vendas.
     columns:
-      - name: pk_sales_tax_rate
-        description: >
-          Chave primária da tabela.
-        tests:
-          - unique
-          - not_null
-
-  - name: stg_sales__sales_territory
-    description: >
-      Territórios de vendas.
-    columns:
-      - name: pk_sales_territory
+      - name: pk_taxa_imposto_vendas
         description: >
           Chave primária da tabela.
         tests:
@@ -654,9 +654,20 @@ models:
     description: >
       Histórico de territórios de vendas.
     columns:
-      - name: sk_sales_territory_history
+      - name: sk_historico_territorio_vendas
         description: >
           Chave substituta da tabela.
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_sales__sales_territory
+    description: >
+      Territórios de vendas.
+    columns:
+      - name: pk_territorio_venda
+        description: >
+          Chave primária da tabela.
         tests:
           - unique
           - not_null
@@ -665,18 +676,7 @@ models:
     description: >
       Itens do carrinho de compras.
     columns:
-      - name: pk_shopping_cart_item
-        description: >
-          Chave primária da tabela.
-        tests:
-          - unique
-          - not_null
-
-  - name: stg_sales__special_offers
-    description: >
-      Ofertas especiais.
-    columns:
-      - name: pk_special_offer
+      - name: pk_item_carrinho_compras
         description: >
           Chave primária da tabela.
         tests:
@@ -687,9 +687,20 @@ models:
     description: >
       Relacionamento entre ofertas especiais e produtos.
     columns:
-      - name: sk_special_offer_product
+      - name: sk_produto_especial_oferta
         description: >
           Chave substituta da tabela.
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_sales__special_offers
+    description: >
+      Ofertas especiais.
+    columns:
+      - name: pk_oferta_especial
+        description: >
+          Chave primária da tabela.
         tests:
           - unique
           - not_null
@@ -698,7 +709,7 @@ models:
     description: >
       Informações sobre lojas.
     columns:
-      - name: pk_store
+      - name: pk_entidade_negocio
         description: >
           Chave primária da tabela.
         tests:

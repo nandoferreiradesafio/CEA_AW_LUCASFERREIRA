@@ -1,27 +1,27 @@
 with
-    source as (
+    dados_brutos as (
         select *
         from {{ source('RAW_ADVENTURE_WORKS', 'SPECIALOFFERPRODUCT') }}
     )
 
-    , renamed as (
+    , renomear as (
         select
-            SpecialOfferID as pk_special_offer_product
-            , ProductID as fk_product
-            , rowguid
-            , ModifiedDate as modified_date
-        from source
+            try_cast(specialofferid as int) as pk_produto_especial_oferta
+            , try_cast(productid as int) as fk_produto
+            , try_cast(rowguid as string) as rowguid
+            , try_cast(modifieddate as date) as data_modificacao
+        from dados_brutos
     )
 
-    , surrogate as (
+    , chave_estrangeira as (
         select
             {{ dbt_utils.generate_surrogate_key([
-                'pk_special_offer_product'
-                , 'fk_product'
-            ]) }} as sk_special_offer_product
+                'pk_produto_especial_oferta'
+                , 'fk_produto'
+            ]) }} as sk_produto_especial_oferta
             , *
-        from renamed
+        from renomear
     )
 
 select *
-from surrogate
+from chave_estrangeira

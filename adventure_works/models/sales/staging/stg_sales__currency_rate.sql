@@ -1,20 +1,20 @@
 with
-    source as(
+    currencyrate as(
         select *
         from {{ source('RAW_ADVENTURE_WORKS', 'CURRENCYRATE') }}
     )
 
-    , renamed as(
+    , renomear as(
         select
-            CurrencyRateID as pk_currency_rate
-            , CurrencyRateDate as fk_currency_rate_date
-            , FromCurrencyCode as fk_from_currency
-            , ToCurrencyCode as fk_to_currency
-            , AverageRate as average_rate
-            , EndOfDayRate as end_of_day_rate
-            , ModifiedDate as modified_date
-        from source
+            try_cast(currencyrateid as int) as pk_taxa_cambio
+            , try_cast(fromcurrencycode as string) as codigo_moeda_inicial
+            , try_cast(tocurrencycode as string) as codigo_moeda_final
+            , try_cast(averagerate as double) as taxa_media_cambio
+            , try_cast(endofdayrate as double) as taxa_fim_dia
+            , try_cast(currencyratedate as date) as data_taxa_cambio
+            , try_cast(modifieddate as date) as data_modificacao
+        from currencyrate
     )
 
 select *
-from renamed
+from renomear

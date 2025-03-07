@@ -1,19 +1,19 @@
 with
-    source as (
+    customer as (
         select *
         from {{ source('RAW_ADVENTURE_WORKS', 'CUSTOMER') }}
     )
 
-    , renamed as (
+    , renomear as (
         select
-            CustomerID as pk_customer
-            , PersonID as fk_person
-            , StoreID as fk_store
-            , TerritoryID as fk_territory
-            , rowguid as rowguid
-            , ModifiedDate as modified_date
-        from source
+            try_cast(customerid as int) as pk_cliente
+            , try_cast(personid as int) as fk_pessoa
+            , try_cast(storeid as int) as fk_loja
+            , try_cast(territoryid as int) as fk_territorio
+            , try_cast(rowguid as string) as rowguid
+            , try_cast(modifieddate as date) as data_modificacao
+        from customer
     )
 
 select *
-from renamed
+from renomear

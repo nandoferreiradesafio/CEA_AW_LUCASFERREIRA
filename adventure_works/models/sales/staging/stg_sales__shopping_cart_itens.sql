@@ -1,18 +1,19 @@
 with
-    source as (
+    shopping_cart_itens as (
         select *
         from {{ source('RAW_ADVENTURE_WORKS', 'SHOPPINGCARTITEM') }}
     )
 
-    , renamed as (
+    , renomear as (
         select
-            ShoppingCartItemID as pk_shopping_cart_item
-            , ShoppingCartID as fk_shopping_cart
-            , ProductID as fk_product
-            , Quantity as quantity
-            , DateCreated as date_created
-        from source
+            try_cast(shoppingcartitemid as int) as pk_item_carrinho_compras
+            , try_cast(shoppingcartid as int) as fk_carrinho_compras
+            , try_cast(productid as int) as fk_produto
+            , try_cast(quantity as int) as quantidade
+            , try_cast(datecreated as date) as data_criacao
+            , try_cast(modifieddate as date) as data_modificacao
+        from shopping_cart_itens
     )
 
 select *
-from renamed
+from renomear

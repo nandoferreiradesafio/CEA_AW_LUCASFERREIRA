@@ -1,26 +1,26 @@
 with
-    source as(
+    sales_order_header_sales_reason as(
         select *
         from {{ source('RAW_ADVENTURE_WORKS', 'SALESORDERHEADERSALESREASON') }}
     )
 
-    , renamed as (
+    , renomear as (
         select
-            SalesOrderID as fk_sales_order_header
-            , SalesReasonID as fk_sales_reason
-            , ModifiedDate as modified_date
-        from source
+            try_cast(salesorderid as int) as fk_pedido_venda
+            , try_cast(salesreasonid as int) as fk_motivo_venda
+            , try_cast(modifieddate as date) as data_modificacao
+        from sales_order_header_sales_reason
     )
 
-    , surrogate as (
+    , chave_estrangeira as (
         select
             {{ dbt_utils.generate_surrogate_key([
-                'fk_sales_order_header'
-                , 'fk_sales_reason'
-            ]) }} as sk_sales_order_header_sales_reason
+                'fk_pedido_venda'
+                , 'fk_motivo_venda'
+            ]) }} as sk_pedido_venda_movito_venda
             , *
-        from renamed
+        from renomear
     )
 
 select *
-from surrogate
+from chave_estrangeira

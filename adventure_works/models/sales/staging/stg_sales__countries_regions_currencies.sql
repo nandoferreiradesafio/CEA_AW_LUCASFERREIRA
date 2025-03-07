@@ -1,26 +1,26 @@
 with
-    source as (
+    country_region_code as (
         select *
         from {{ source('RAW_ADVENTURE_WORKS', 'COUNTRYREGIONCURRENCY') }}
     )
 
-    , renamed as (
+    , renomear as (
         select
-            CountryRegionCode as country_region_code
-            , CurrencyCode as currency_code
-            , ModifiedDate as modified_date
-        from source
+            try_cast(countryregioncode as string) as codigo_regiao_pais
+            , try_cast(currencycode as string) as codigo_moeda
+            , try_cast(modifieddate as date) as data_modificacao
+        from country_region_code
     )
 
-    , surrogate as (
+    , chave_estrangeira as (
         select
             {{ dbt_utils.generate_surrogate_key([
-                'country_region_code'
-                , 'currency_code'
-            ]) }} as sk_country_region_currency
+                'codigo_regiao_pais'
+                , 'codigo_moeda'
+            ]) }} as sk_regiao_pais_moeda
             , *
-        from renamed
+        from renomear
     )
 
 select *
-from surrogate
+from chave_estrangeira

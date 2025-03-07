@@ -1,26 +1,26 @@
 with
-    source as (
+    person_credit_card as (
         select *
         from {{ source('RAW_ADVENTURE_WORKS', 'PERSONCREDITCARD') }}
     )
 
-    , renamed as (
+    , renomear as (
         select
-            BusinessEntityID as fk_person
-            , CreditCardID as fk_credit_card
-            , ModifiedDate as modified_date
-        from source
+            try_cast(businessentityid as int) as fk_entidade_empresarial
+            , try_cast(creditcardid as int) as fk_cartao_credito
+            , try_cast(modifieddate as date) as data_modificacao
+        from person_credit_card
     )
 
-    , surrogate as (
+    , chave_estrangeira as (
         select
             {{ dbt_utils.generate_surrogate_key([
-                'fk_person'
-                , 'fk_credit_card'
-            ]) }} as sk_person_credit_card
+                'fk_entidade_empresarial'
+                , 'fk_cartao_credito'
+            ]) }} as sk_pessoa_cartao_credito
             , *
-        from renamed
+        from renomear
     )
 
 select *
-from surrogate
+from chave_estrangeira
