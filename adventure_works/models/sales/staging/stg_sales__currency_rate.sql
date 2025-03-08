@@ -1,3 +1,5 @@
+{{ config(schema='sales') }}
+
 with
     currencyrate as(
         select *

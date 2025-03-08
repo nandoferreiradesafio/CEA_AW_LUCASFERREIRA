@@ -1,3 +1,5 @@
+{{ config(schema='sales') }}
+
 with
     customer as (
         select *

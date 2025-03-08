@@ -1,3 +1,5 @@
+{{ config(schema='sales') }}
+
 with
     sales_reason as (
         select *

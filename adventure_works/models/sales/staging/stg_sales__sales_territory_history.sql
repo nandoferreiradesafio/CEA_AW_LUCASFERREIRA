@@ -1,3 +1,5 @@
+{{ config(schema='sales') }}
+
 with
     sales_territory_history as (
         select *

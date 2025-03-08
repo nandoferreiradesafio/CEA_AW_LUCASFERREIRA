@@ -1,3 +1,5 @@
+{{ config(schema='sales') }}
+
 with
     sales_person_quota_history as (
         select *

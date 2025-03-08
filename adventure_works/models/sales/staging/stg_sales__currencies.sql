@@ -1,3 +1,5 @@
+{{ config(schema='sales') }}
+
 with
     currency as (
         select *

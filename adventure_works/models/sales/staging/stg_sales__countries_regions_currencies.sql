@@ -1,3 +1,5 @@
+{{ config(schema='sales') }}
+
 with
     country_region_code as (
         select *

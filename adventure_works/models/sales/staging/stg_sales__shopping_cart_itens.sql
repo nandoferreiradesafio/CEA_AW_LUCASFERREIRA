@@ -1,3 +1,5 @@
+{{ config(schema='sales') }}
+
 with
     shopping_cart_itens as (
         select *

@@ -1,3 +1,5 @@
+{{ config(schema='sales') }}
+
 with
     sales_order_header as (
         select *

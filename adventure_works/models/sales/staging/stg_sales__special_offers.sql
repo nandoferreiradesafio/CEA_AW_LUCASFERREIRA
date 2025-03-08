@@ -1,3 +1,5 @@
+{{ config(schema='sales') }}
+
 with
     special_offer as (
         select *

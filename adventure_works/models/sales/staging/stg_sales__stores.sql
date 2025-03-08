@@ -1,3 +1,5 @@
+{{ config(schema='sales') }}
+
 with
     store as (
         select *

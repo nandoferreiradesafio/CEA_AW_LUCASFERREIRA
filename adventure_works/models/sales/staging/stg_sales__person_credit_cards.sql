@@ -1,3 +1,5 @@
+{{ config(schema='sales') }}
+
 with
     person_credit_card as (
         select *

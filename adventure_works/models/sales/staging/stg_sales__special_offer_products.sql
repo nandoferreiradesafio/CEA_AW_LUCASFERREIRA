@@ -1,3 +1,5 @@
+{{ config(schema='sales') }}
+
 with
     dados_brutos as (
         select *
