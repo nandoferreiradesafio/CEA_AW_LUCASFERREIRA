@@ -1,0 +1,226 @@
+version: 2
+
+sources:
+  - name: RAW_ADVENTURE_WORKS
+    database: FEA24_11
+    schema: RAW_ADVENTURE_WORKS
+    description: >
+      Fonte de dados bruta do Adventure Works.
+    config:
+      enabled: true
+    tables:
+      - name: PRODUCTVENDOR
+        description: >
+          Tabela que contém os fornecedores de produtos.
+        columns:
+          - name: PRODUCTID
+            description: >
+              Identificador do produto.
+          - name: BUSINESSENTITYID
+            description: >
+              Identificador da entidade de negócio.
+          - name: AVERAGELEADTIME
+            description: >
+              Tempo médio de entrega.
+          - name: STANDARDPRICE
+            description: >
+              Preço padrão.
+          - name: LASTRECEIPTCOST
+            description: >
+              Último custo de recebimento.
+          - name: LASTRECEIPTDATE
+            description: >
+              Data do último recebimento.
+          - name: MINORDERQTY
+            description: >
+              Quantidade mínima de pedido.
+          - name: MAXORDERQTY 
+            description: >
+              Quantidade máxima de pedido.
+          - name: ONORDERQTY
+            description: >
+              Quantidade em pedido.
+          - name: UNITMEASURECODE
+            description: >
+              Código da unidade de medida.
+          - name: MODIFIEDDATE
+            description: >
+              Data de modificação.
+
+      - name: PURCHASEORDERDETAIL
+        description: >
+          Tabela que contém os detalhes do pedido de compra.
+        columns:
+          - name: PURCHASEORDERID
+            description: >
+              Identificador do pedido de compra.
+          - name: PURCHASEORDERDETAILID
+            description: >
+              Identificador do detalhe do pedido de compra.
+          - name: DUEDATE
+            description: >
+              Data de vencimento.
+          - name: ORDERQTY
+            description: >
+              Quantidade do pedido.
+          - name: PRODUCTID
+            description: >
+              Identificador do produto.
+          - name: UNITPRICE
+            description: >
+              Preço unitário.
+          - name: RECEIVEDQTY
+            description: >
+              Quantidade recebida.
+          - name: REJECTEDQTY
+            description: >
+              Quantidade rejeitada.
+          - name: MODIFIEDDATE
+            description: >
+              Data de modificação.
+
+      - name: PURCHASEORDERHEADER
+        description: >
+          Tabela que contém os cabeçalhos do pedido de compra.
+        columns:
+          - name: PURCHASEORDERID
+            description: >
+              Identificador do pedido de compra.
+          - name: REVISIONNUMBER
+            description: >
+              Número de revisão.
+          - name: STATUS
+            description: >
+              Status.
+          - name: EMPLOYEEID
+            description: >
+              Identificador do funcionário.
+          - name: VENDORID
+            description: >
+              Identificador do fornecedor.
+          - name: SHIPMETHODID
+            description: >
+              Identificador do método de envio.
+          - name: ORDERDATE
+            description: >
+              Data do pedido.
+          - name: SHIPDATE
+            description: >
+              Data de envio.
+          - name: SUBTOTAL
+            description: >
+              Subtotal.
+          - name: TAXAMOUNT
+            description: >
+              Valor do imposto.
+          - name: FREIGHT
+            description: >
+              Frete.
+          - name: MODIFIEDDATE
+            description: >
+              Data de modificação.
+
+      - name: SHIPMETHOD
+        description: >
+          Tabela que contém os métodos de envio.
+        columns:
+          - name: SHIPMETHODID
+            description: >
+              Identificador do método de envio.
+          - name: NAME
+            description: >
+              Nome.
+          - name: SHIPBASE
+            description: >
+              Base de envio.
+          - name: SHIPRATE
+            description: >
+              Taxa de envio.
+          - name: MODIFIEDDATE
+            description: >
+              Data de modificação.
+
+      - name: VENDOR
+        description: >
+          Tabela que contém os fornecedores.
+        columns:
+          - name: BUSINESSENTITYID
+            description: >
+              Identificador da entidade de negócio.
+          - name: ACCOUNTNUMBER
+            description: >
+              Número da conta.
+          - name: NAME
+            description: >
+              Nome.
+          - name: CREDITRATING
+            description: >
+              Classificação de crédito.
+          - name: PREFERREDVENDORSTATUS
+            description: >
+              Status de fornecedor preferencial.
+          - name: ACTIVEFLAG
+            description: >
+              Sinalizador ativo.
+          - name: PURCHASINGWEBSERVICEURL
+            description: >
+              Site de compras.
+          - name: MODIFIEDDATE
+            description: >
+              Data de modificação.
+
+models:
+  - name: stg_purchasing__product_vendor
+    description: >
+      Tabela de estágio de fornecedores de produtos.
+    columns:
+      - name: sk_fornecedor_produto
+        description: >
+          Tabela de chave primária de fornecedores de produtos
+        tests:
+          - unique
+          - not_null
+  
+  - name: stg_purchasing__purchase_order_detail
+    description: >
+      Tabela de estágio de detalhes do pedido de compra.
+    columns:
+      - name: pk_pedido_detalhe
+        description: >
+          Tabela de chave primária de detalhes do pedido de compra
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_purchasing__purchase_order_header
+    description: >
+      Tabela de estágio de cabeçalhos do pedido de compra.
+    columns:
+      - name: pk_pedido_cabecalho
+        description: >
+          Tabela de chave primária de cabeçalhos do pedido de compra
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_purchasing__ship_method
+    description: >
+      Tabela de estágio de métodos de envio.
+    columns:
+      - name: pk_metodo_envio
+        description: >
+          Tabela de chave primária de métodos de envio
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_purchasing__vendor
+    description: >
+      Tabela de estágio de fornecedores.
+    columns:
+      - name: pk_fornecedor
+        description: >
+          Tabela de chave primária de fornecedores
+        tests:
+          - unique
+          - not_null
