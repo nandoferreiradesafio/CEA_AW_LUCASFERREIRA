@@ -4,6 +4,7 @@
 # name or the intended use of these models
 name: 'adventure_works'
 version: '1.0.0'
+config-version: 2
 
 # This setting configures which "profile" dbt uses for this project.
 profile: 'adventure_works'
@@ -34,6 +35,9 @@ clean-targets:         # directories to be removed by `dbt clean`
 models:
   adventure_works:
     # Configurações globais de materialização para reutilização
+    +enabled: >
+      {{ false if target.name == 'samples' else true }}
+
     staging: &staging
       +materialized: view
     intermediate: &intermediate
