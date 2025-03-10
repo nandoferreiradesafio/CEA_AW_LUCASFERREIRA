@@ -1,0 +1,772 @@
+version: 2
+
+sources:
+  - name: RAW_ADVENTURE_WORKS
+    database: FEA24_11
+    schema: RAW_ADVENTURE_WORKS
+    description: >
+      Fonte de dados bruta do Adventure Works.
+    config:
+      enabled: true
+    tables:
+      - name: BILLOFMATERIALS
+        description: >
+          Tabela que contém a lista de materiais.
+        columns:
+          - name: "billofmaterialsid"
+            description: >
+              Identificador da lista de materiais.
+          - name: "productassemblyid"
+            description: >
+              Identificador do produto montado.
+          - name: "componentid"
+            description: >
+              Identificador do componente.
+          - name: "startdate"
+            description: >
+              Data de início.
+          - name: "enddate"
+            description: >
+              Data de término.
+          - name: "unitmeasurecode"
+            description: >
+              Código da unidade de medida.
+          - name: "bomlevel"
+            description: >
+              Nível da lista de materiais.
+          - name: "perassemblyqty"
+            description: >
+              Quantidade por montagem.
+          - name: "modifieddate"
+            description: >
+              Data de modificação.
+
+      - name: CULTURE
+        description: >
+          Tabela que contém as culturas.
+        columns:
+          - name: CULTUREID
+            description: >
+              Identificador da cultura.
+          - name: NAME
+            description: >
+              Nome.
+          - name: MODIFIEDDATE
+            description: >
+              Data de modificação.
+
+      - name: ILLUSTRATION
+        description: >
+          Tabela que contém as ilustrações.
+        columns:
+          - name: ILLUSTRATIONID
+            description: >
+              Identificador da ilustração.
+          - name: DIAGRAM
+            description: >
+              Diagrama.
+          - name: MODIFIEDDATE
+            description: >
+              Data de modificação.
+
+      - name: LOCATION
+        description: >
+          Tabela que contém as localizações.
+        columns:
+          - name: LOCATIONID
+            description: >
+              Identificador da localização.
+          - name: NAME
+            description: >
+              Nome.
+          - name: COSTRATE
+            description: >
+              Taxa de custo.
+          - name: AVAILABILITY
+            description: >
+              Disponibilidade.
+          - name: MODIFIEDDATE
+            description: >
+              Data de modificação.
+
+      - name: PRODUCT
+        description: >
+          Tabela que contém os produtos.
+        columns:
+          - name: PRODUCTID
+            description: >
+              Identificador do produto.
+          - name: NAME
+            description: >
+              Nome.
+          - name: PRODUCTNUMBER
+            description: >
+              Número do produto.
+          - name: MAKEFLAG
+            description: >
+              Sinalizador de fabricação.
+          - name: FINISHEDGOODSFLAG
+            description: >
+              Sinalizador de produto acabado.
+          - name: COLOR
+            description: >
+              Cor.
+          - name: SAFETYSTOCKLEVEL
+            description: >
+              Nível de estoque de segurança.
+          - name: REORDERPOINT
+            description: >
+              Ponto de reordenação.
+          - name: STANDARDCOST
+            description: >
+              Custo padrão.
+          - name: LISTPRICE
+            description: >
+              Preço de lista.
+          - name: SIZE
+            description: >
+              Tamanho.
+          - name: SIZEUNITMEASURECODE
+            description: >
+              Código da unidade de medida de tamanho.
+          - name: WEIGHTUNITMEASURECODE
+            description: >
+              Código da unidade de medida de peso.
+          - name: WEIGHT
+            description: >
+              Peso.
+          - name: DAYSTOMANUFACTURE
+            description: >
+              Dias para fabricação.
+          - name: PRODUCTLINE
+            description: >
+              Linha de produto.
+          - name: CLASS
+            description: >
+              Classe.
+          - name: STYLE
+            description: >
+              Estilo.
+          - name: PRODUCTSUBCATEGORYID
+            description: >
+              Identificador da subcategoria de produto.
+          - name: PRODUCTMODELID
+            description: >
+              Identificador do modelo de produto.
+          - name: SELLSTARTDATE
+            description: >
+              Data de início de venda.
+          - name: SELLENDDATE
+            description: >
+              Data de término de venda.
+          - name: DISCONTINUEDDATE
+            description: >
+              Data de descontinuação.
+          - name: ROWGUID
+            description: >
+              Identificador global exclusivo.
+          - name: MODIFIEDDATE
+            description: >
+              Data de modificação.
+
+      - name: PRODUCTCATEGORY
+        description: >
+          Tabela que contém as categorias de produtos.
+        columns:
+          - name: PRODUCTCATEGORYID
+            description: >
+              Identificador da categoria de produto.
+          - name: NAME
+            description: >
+              Nome.
+          - name: ROWGUID
+            description: >
+              Identificador global exclusivo.
+          - name: MODIFIEDDATE
+            description: >
+              Data de modificação.
+
+      - name: PRODUCTCOSTHISTORY
+        description: >
+          Tabela que contém o histórico de custo do produto.
+        columns:
+          - name: PRODUCTID
+            description: >
+              Identificador do produto.
+          - name: STARTDATE
+            description: >
+              Data de início.
+          - name: ENDDATE
+            description: >
+              Data de término.
+          - name: STANDARDCOST
+            description: >
+              Custo padrão.
+          - name: MODIFIEDDATE
+            description: >
+              Data de modificação.
+
+      - name: PRODUCTDESCRIPTION
+        description: >
+          Tabela que contém as descrições dos produtos.
+        columns:
+          - name: PRODUCTDESCRIPTIONID
+            description: >
+              Identificador da descrição do produto.
+          - name: DESCRIPTION
+            description: >
+              Descrição.
+          - name: CULTUREID
+            description: >
+              Identificador da cultura.
+          - name: MODIFIEDDATE
+            description: >
+              Data de modificação.
+
+      - name: PRODUCTDOCUMENT
+        description: >
+          Tabela que contém os documentos dos produtos.
+        columns:
+          - name: PRODUCTID
+            description: >
+              Identificador do produto.
+          - name: DOCUMENTNODE
+            description: >
+              Nó do documento.
+          - name: MODIFIEDDATE
+            description: >
+              Data de modificação.
+
+      - name: PRODUCTINVENTORY
+        description: >
+          Tabela que contém o inventário do produto.
+        columns:
+          - name: PRODUCTID
+            description: >
+              Identificador do produto.
+          - name: LOCATIONID
+            description: >
+              Identificador da localização.
+          - name: SHELF
+            description: >
+              Prateleira.
+          - name: BIN
+            description: >
+              Bin.
+          - name: QUANTITY
+            description: >
+              Quantidade.
+          - name: ROWGUID
+            description: >
+              Identificador global exclusivo.
+          - name: MODIFIEDDATE
+            description: >
+              Data de modificação.
+
+      - name: PRODUCTLISTPRICEHISTORY
+        description: >
+          Tabela que contém o histórico de preços de lista do produto.
+        columns:
+          - name: PRODUCTID
+            description: >
+              Identificador do produto.
+          - name: STARTDATE
+            description: >
+              Data de início.
+          - name: ENDDATE
+            description: >
+              Data de término.
+          - name: LISTPRICE
+            description: >
+              Preço de lista.
+          - name: MODIFIEDDATE
+            description: >
+              Data de modificação.
+
+      - name: PRODUCTMODEL
+        description: >
+          Tabela que contém os modelos de produtos.
+        columns:
+          - name: PRODUCTMODELID
+            description: >
+              Identificador do modelo de produto.
+          - name: NAME
+            description: >
+              Nome.
+          - name: CATALOGDESCRIPTION
+            description: >
+              Descrição do catálogo.
+          - name: INSTRUCTIONS
+            description: >
+              Instruções.
+          - name: ROWGUID
+            description: >
+              Identificador global exclusivo.
+          - name: MODIFIEDDATE
+            description: >
+              Data de modificação.
+
+      - name: PRODUCTMODELILLUSTRATION
+        description: >
+          Tabela que contém as ilustrações dos modelos de produtos.
+        columns:
+          - name: PRODUCTMODELID
+            description: >
+              Identificador do modelo de produto.
+          - name: ILLUSTRATIONID
+            description: >
+              Identificador da ilustração.
+          - name: MODIFIEDDATE
+            description: >
+              Data de modificação.
+
+      - name: PRODUCTMODELPRODUCTDESCRIPTIONCULTURE
+        description: >
+          Tabela que contém as descrições de produtos de cultura de modelo de produto.
+        columns:
+          - name: PRODUCTMODELID
+            description: >
+              Identificador do modelo de produto.
+          - name: PRODUCTDESCRIPTIONID
+            description: >
+              Identificador da descrição do produto.
+          - name: CULTUREID
+            description: >
+              Identificador da cultura.
+          - name: MODIFIEDDATE
+            description: >
+              Data de modificação.
+
+      - name: PRODUCTPRODUCTPHOTO
+        description: >
+          Tabela que contém as fotos dos produtos.
+        columns:
+          - name: PRODUCTID
+            description: >
+              Identificador do produto.
+          - name: PRODUCTPHOTOID
+            description: >
+              Identificador da foto do produto.
+          - name: PRIMARY
+            description: >
+              Primário.
+          - name: MODIFIEDDATE
+            description: >
+              Data de modificação.
+
+      - name: PRODUCTSUBCATEGORY
+        description: >
+          Tabela que contém as subcategorias de produtos.
+        columns:
+          - name: PRODUCTSUBCATEGORYID
+            description: >
+              Identificador da subcategoria de produto.
+          - name: PRODUCTCATEGORYID
+            description: >
+              Identificador da categoria de produto.
+          - name: NAME
+            description: >
+              Nome.
+          - name: ROWGUID
+            description: >
+              Identificador global exclusivo.
+          - name: MODIFIEDDATE
+            description: >
+              Data de modificação.
+
+      - name: SCRAPREASON
+        description: >
+          Tabela que contém os motivos de sucata.
+        columns:
+          - name: SCRAPREASONID
+            description: >
+              Identificador do motivo de sucata.
+          - name: NAME
+            description: >
+              Nome.
+          - name: MODIFIEDDATE
+            description: >
+              Data de modificação.
+
+      - name: TRANSACTIONHISTORY
+        description: >
+          Tabela que contém o histórico de transações.
+        columns:
+          - name: TRANSACTIONID
+            description: >
+              Identificador da transação.
+          - name: PRODUCTID
+            description: >
+              Identificador do produto.
+          - name: QUANTITY
+            description: >
+              Quantidade.
+          - name: ACTUALCOST
+            description: >
+              Custo real.
+          - name: TRANSACTIONDATE
+            description: >
+              Data da transação.
+          - name: MODIFIEDDATE
+            description: >
+              Data de modificação.
+
+      - name: TRANSACTIONHISTORYARCHIVE
+        description: >
+          Transações para anos anteriores.
+        columns:
+          - name: TRANSACTIONID
+            description: >
+              Identificador da transação.
+          - name: PRODUCTID
+            desciption: >
+              Identificador do produto.
+          - name: REFERENCEORDERID
+            description: >
+              Pedido de compra, pedido de vendas ou número de identificação de pedidos de serviço.
+          - name: REFERENCEORDERLINEID
+            description: >
+              Número da linha associado ao pedido de compra, pedido de vendas ou ordem de serviço.
+          - name: TRANSACTIONDATE
+            description: >
+              Data e hora da transação.
+          - name: TRANSACTIONTYPE
+            description: >
+              Tipo de transações
+          - name: QUANTITY
+            description: >
+              Quantidade de Produto
+          - name: ACTUALCOST
+            description: >
+              Custo do Produto
+          - name: MODIFIEDDATE
+            description: >
+              Data de modificação
+      
+      - name: UNITMEASURE
+        description: >
+          Tabela de pesquisa da unidade de medida.
+        columns:
+          - name: UNITMEASURECODE
+            description: >
+              Identificador das unidades de medida
+          - name: NAME
+            description: >
+                Descrição de unidade de medida
+          - name: MODIFIEDDATE
+            descriptin: >
+              Data de modificação
+
+      - name: WORKORDER
+        description: >
+          Ordens de serviço de fabricação.
+        columns:
+          - name: WORKORDERID
+            description: >
+              Identificador do serviço de fabricação
+          - name: PRODUCTID
+            description: >
+              Identificador do produto
+          - name: ORDERQTY
+            description: >
+              Quantidade do produto para construir.
+          - name: SCRAPPEDQTY
+            description: >
+              Quantidade que falhou na inspeção.
+          - name: ENDDATE
+            description: >
+              Data de término.
+          - name: DUEDATE
+            description: >
+              Data de vencimento da ordem de serviço.
+          - name: SCRAPREASONID
+            description: >
+              Razão para falha de inspeção.
+          - name: MODIFIEDDATE
+            description: >
+              Data de modificação
+
+      - name: WORKORDERROUTING
+        description: >
+          Detalhes da ordem de serviço.
+        columns:
+          - name: WORKORDERID
+            description: >
+              Identificador do serviço de fabricação
+          - name: PRODUCTID
+            description: >
+              Identificador do produto
+          - name: OPERATIONSEQUENCE
+            description: >
+              Chave primária. Indica a sequência do processo de fabricação.
+          - name: LOCATIONID
+            description: >
+              Identificador da localização.
+          - name: SCHEDULEDSTARTDATE
+            description: >
+              Data de início da fabricação planejada.
+          - name: SCHEDULEDENDDATE
+            description: >
+              Data de término da fabricação planejada.
+          - name: ACTUALSTARTDATE
+            description: >
+              Data de início real.
+          - name: ACTUALENDDATE
+            description: >
+              Data de término real.
+          - name: ACTUALRESOURCEHRS
+            description: >
+              Número de horas de fabricação usadas.
+          - name: PLANNEDCOST
+            description: >
+              Custo estimado de fabricação.
+          - name: ACTUALCOST
+            description: >
+              Custo do Produto
+          - name: MODIFIEDDATE
+            description: >
+              Data de modificação
+
+
+models:
+  - name: stg_production__bill_of_materials
+    description: >
+      Modelo que representa a lista de materiais.
+    columns:
+      - name: pk_lista_materiais
+        description: >
+          Identificador da lista de materiais.
+        tests:
+          - unique
+          - not_null
+  
+  - name: stg_production__culture
+    description: >
+      Modelo que representa as culturas.
+    columns:
+      - name: pk_cultura
+        description: >
+          Identificador da cultura.
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_production__illustration
+    description: >
+      Modelo que representa as ilustrações.
+    columns:
+      - name: pk_ilustracao
+        description: >
+          Identificador da ilustração.
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_production__location
+    description: >
+      Modelo que representa as localizações.
+    columns:
+      - name: pk_localizacao
+        description: >
+          Identificador da localização.
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_production__product
+    description: >
+      Modelo que representa os produtos.
+    columns:
+      - name: pk_produto
+        description: >
+          Identificador do produto.
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_production__product_category
+    description: >
+      Modelo que representa as categorias de produtos.
+    columns:
+      - name: pk_categoria_produto
+        description: >
+          Identificador da categoria de produto.
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_production__product_cost_history
+    description: >
+      Modelo que representa o histórico de custo do produto.
+    columns:
+      - name: sk_produto_custo_historico
+        description: >
+          Identificador do histórico de custo do produto.
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_production__product_description
+    description: >
+      Modelo que representa as descrições dos produtos.
+    columns:
+      - name: pk_descricao_produto
+        description: >
+          Identificador da descrição do produto.
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_production__product_document
+    description: >
+      Modelo que representa os documentos dos produtos.
+    columns:
+      - name: sk_produto_documento
+        description: >
+          Identificador do documento do produto.
+        tests:
+          - unique
+          - not_null
+  
+  - name: stg_production__product_inventory
+    description: >
+      Modelo que representa o inventário do produto.
+    columns:
+      - name: sk_produto_estoque
+        description: >
+          Identificador do inventário do produto.
+        tests:
+          - unique
+          - not_null
+  
+  - name: stg_production__product_list_price_history
+    description: >
+      Modelo que representa o histórico de preços de lista do produto.
+    columns:
+      - name: sk_produto_preco_lista_historico
+        description: >
+          Identificador do histórico de preços de lista do produto.
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_production__product_model
+    description: >
+      Modelo que representa os modelos de produtos.
+    columns:
+      - name: pk_modelo_produto
+        description: >
+          Identificador do modelo de produto.
+        tests:
+          - unique
+          - not_null
+  
+  - name: stg_production__product_model_illustration
+    description: >
+      Modelo que representa as ilustrações dos modelos de produtos.
+    columns:
+      - name: sk_modelo_produto_ilustracao
+        description: >
+          Identificador da ilustração do modelo de produto.
+        tests:
+          - unique
+          - not_null
+  
+  - name: stg_production__product_model_product_description_culture
+    description: >
+      Modelo que representa as descrições de produtos de cultura de modelo de produto.
+    columns:
+      - name: sk_modelo_produto_descricao_produto_cultura
+        description: >
+          Identificador da descrição do produto de cultura de modelo de produto.
+        tests:
+          - unique
+          - not_null
+  
+  - name: stg_production__product_product_photo
+    description: >
+      Modelo que representa as fotos dos produtos.
+    columns:
+      - name: sk_produto_produto_foto
+        description: >
+          Identificador da foto do produto.
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_production__product_subcategory
+    description: >
+      Modelo que representa as subcategorias de produtos.
+    columns:
+      - name: pk_subcategoria_produto
+        description: >
+          Identificador da subcategoria de produto.
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_production__scrap_reason
+    description: >
+      Modelo que representa os motivos de sucata.
+    columns:
+      - name: pk_motivo_descarte
+        description: >
+          Identificador do motivo de sucata.
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_production__transaction_history
+    description: >
+      Modelo que representa o histórico de transações.
+    columns:
+      - name: pk_transacao_historico
+        description: >
+          Identificador da transação.
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_production__transaction_history_archive
+    description: >
+      Modelo que representa Transações para anos anteriores.
+    columns:
+      - name: pk_transacao_historico_arquivo
+        description: >
+          Identificador da transação.
+        test:
+          - unique
+          - not_null
+
+  - name: stg_production__unit_measure
+    description: >
+      Modelo que representa as unidades de medidas
+    columns:
+      - name: pk_unidades_medidas
+        description: >
+          Identificador da unidade de medidas
+        test:
+          - unique
+          - not_null
+
+  - name: stg_production__work_order
+    description: >
+      Ordens de serviço de fabricação.
+    columns:
+      - name: pk_registro_trabalho
+        description: >
+          Chave primária para registros de trabalho.
+        test:
+          - unique
+          - not_null
+
+  - name: stg_production__work_order_routing
+    description: >
+      Detalhes da ordem de serviço.
+    columns:
+      - name: sk_detalhes_registro_trabalho
+        description: >
+          Chave primária para detalhes registro de trabalho
+        test:
+          - unique
+          - not_null
