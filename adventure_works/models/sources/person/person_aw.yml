@@ -353,38 +353,57 @@ models:
           - unique
           - not_null
 
+  - name: stg_person__email_address
+    description: >
+      Endereço de e-mail associado a uma pessoa para comunicação.
+    columns:
+      - name: pk_email
+        description: >
+          Chave primária da tabela de endereços de e-mail.
+        tests:
+          - unique
+          - not_null
+
   - name: stg_person__person
-    decription: >
+    description: >
+      Informações pessoais, incluindo dados de identificação e características de cada pessoa.
     columns:
       - name: sk_pessoa
         description: >
-        test:
+          Chave primária da tabela de pessoas.
+        tests:
           - unique
           - not_null
-  
+
   - name: stg_person__person_phone
-    decription: >
+    description: >
+      Relacionamento entre as pessoas e seus números de telefone.
     columns:
       - name: sk_telefone_pessoa
         description: >
-        test:
+          Chave primária da tabela de telefones das pessoas.
+        tests:
           - unique
           - not_null
 
   - name: stg_person__phone_number_type
-    decription: >
+    description: >
+      Tipos de números de telefone (ex.: celular, fixo, comercial).
     columns:
       - name: pk_tipo_telefone
         description: >
-        test:
+          Chave primária da tabela de tipos de telefone.
+        tests:
           - unique
           - not_null
 
   - name: stg_person__state_province
-    decription: >
+    description: >
+      Estados ou províncias associados às pessoas, indicando sua localização geográfica.
     columns:
       - name: pk_estado_provincia
         description: >
-        test:
+          Chave primária da tabela de estados/províncias.
+        tests:
           - unique
           - not_null

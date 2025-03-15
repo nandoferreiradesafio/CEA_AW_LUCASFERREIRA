@@ -8,7 +8,7 @@ with
 
     , renomear as (
         select 
-            cast(businessentityid as int) as fk_entidade_negocio
+            cast(businessentityid as int) as fk_entidade_empresarial
             , case
                 when persontype  = 'SC' then 'Contato da loja' 
                 when persontype  = 'IN' then 'Cliente individual' 
@@ -35,7 +35,7 @@ with
     , chave_estrageira as (
         select
             {{ dbt_utils.generate_surrogate_key([
-                'fk_entidade_negocio'
+                'fk_entidade_empresarial'
                 , 'nome_completo'
                 , 'tipo_pessoa'
             ]) }} as sk_pessoa
