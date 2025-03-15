@@ -1,0 +1,225 @@
+version: 2
+
+sources:
+  - name: RAW_ADVENTURE_WORKS
+    database: FEA24_11
+    schema: RAW_ADVENTURE_WORKS
+    description: >
+      Fonte de dados bruta do Adventure Works.
+    config:
+      enabled: true
+    tables:
+      - name: DEPARTMENT
+        description: >
+          Contém informações sobre os departamentos dentro da organização.
+        columns:
+          - name: DEPARTMENTID
+            description: >
+              Identificador único do departamento. Chave primária da tabela.
+          - name: NAME
+            description: >
+              Nome do departamento (exemplo: Vendas, TI, Recursos Humanos).
+          - name: GROUPNAME
+            description: >
+              Nome do grupo ao qual o departamento pertence (exemplo: Administração, Operações).
+          - name: MODIFIEDDATE
+            description: >
+              Data e hora da última modificação do registro.
+
+      - name: EMPLOYEE
+        description: >
+          Contém informações sobre os funcionários da organização.
+        columns:
+          - name: BUSINESSENTITYID
+            description: >
+              Identificador único da entidade de negócios. Chave primária da tabela.
+          - name: NATIONALIDNUMBER
+            description: >
+              Número de identificação nacional do funcionário.
+          - name: LOGINID
+            description: >
+              Identificador de login do funcionário no sistema.
+          - name: JOBTITLE
+            description: >
+              Cargo ou título do funcionário na organização.
+          - name: BIRTHDATE
+            description: >
+              Data de nascimento do funcionário.
+          - name: MARITALSTATUS
+            description: >
+              Estado civil do funcionário (exemplo: Solteiro, Casado).
+          - name: GENDER
+            description: >
+              Gênero do funcionário (exemplo: Masculino, Feminino, Outro).
+          - name: HIREDATE
+            description: >
+              Data em que o funcionário foi contratado.
+          - name: SALARIEDFLAG
+            description: >
+              Indica se o funcionário é assalariado (true = Sim, false = Não).
+          - name: VACATIONHOURS
+            description: >
+              Quantidade de horas de férias acumuladas pelo funcionário.
+          - name: SICKLEAVEHOURS
+            description: >
+              Quantidade de horas de licença médica acumuladas pelo funcionário.
+          - name: CURRENTFLAG
+            description: >
+              Indica se o funcionário está ativo (true = Ativo, false = Inativo).
+          - name: ROWGUID
+            description: >
+              Identificador global único (GUID) da linha para controle de integridade.
+          - name: MODIFIEDDATE
+            description: >
+              Data e hora da última modificação do registro.
+          - name: ORGANIZATIONNODE
+            description: >
+              Identificador do nó da organização onde o funcionário está alocado.
+
+      - name: EMPLOYEEDEPARTMENTHISTORY
+        description: >
+          Contém o histórico de departamentos dos funcionários, incluindo informações sobre mudanças de departamento e turno.
+        columns:
+          - name: BUSINESSENTITYID
+            description: >
+              Identificador único da entidade de negócios do funcionário. Chave primária que faz referência à tabela de funcionários.
+          - name: DEPARTMENTID
+            description: >
+              Identificador do departamento em que o funcionário foi alocado.
+          - name: SHIFTID
+            description: >
+              Identificador do turno em que o funcionário trabalhou.
+          - name: STARTDATE
+            description: >
+              Data em que o funcionário iniciou no departamento e/ou turno.
+          - name: ENDDATE
+            description: >
+              Data em que o funcionário deixou o departamento e/ou turno.
+          - name: MODIFIEDDATE
+            description: >
+              Data e hora da última modificação do registro.
+
+      - name: EMPLOYEEPAYHISTORY
+        description: >
+          Contém o histórico de pagamentos dos funcionários, incluindo informações sobre alterações na taxa de pagamento.
+        columns:
+          - name: BUSINESSENTITYID
+            description: >
+              Identificador único da entidade de negócios do funcionário. Chave primária que faz referência à tabela de funcionários.
+          - name: RATECHANGEDATE
+            description: >
+              Data em que a taxa de pagamento do funcionário foi alterada.
+          - name: RATE
+            description: >
+              Valor da nova taxa de pagamento do funcionário.
+          - name: PAYFREQUENCY
+            description: >
+              Frequência do pagamento do funcionário (exemplo: semanal, mensal).
+          - name: MODIFIEDDATE
+            description: >
+              Data e hora da última modificação do registro.
+
+      - name: JOBCANDIDATE
+        description: >
+          Contém informações sobre os candidatos a emprego na organização.
+        columns:
+          - name: JOBCANDIDATEID
+            description: >
+              Identificador único do candidato. Chave primária da tabela.
+          - name: BUSINESSENTITYID
+            description: >
+              Identificador único da entidade de negócios do candidato. Refere-se ao candidato na tabela de funcionários.
+          - name: RESUME
+            description: >
+              Currículo do candidato, geralmente armazenado como texto ou link para o documento.
+          - name: MODIFIEDDATE
+            description: >
+              Data e hora da última modificação do registro.
+
+      - name: SHIFT
+        description: >
+          Contém informações sobre os turnos de trabalho na organização.
+        columns:
+          - name: SHIFTID
+            description: >
+              Identificador único do turno. Chave primária da tabela.
+          - name: NAME
+            description: >
+              Nome do turno (exemplo: Turno da manhã, Turno da noite).
+          - name: STARTTIME
+            description: >
+              Hora de início do turno, geralmente no formato de 24 horas.
+          - name: ENDTIME
+            description: >
+              Hora de término do turno, geralmente no formato de 24 horas.
+          - name: MODIFIEDDATE
+            description: >
+              Data e hora da última modificação do registro.
+
+
+models:
+  - name: stg_human_resources__department
+    description: >
+      Informações sobre os departamentos dentro da organização, incluindo dados como identificação e estrutura.
+    columns:
+      - name: pk_departamento
+        description: >
+          Chave primária da tabela de departamentos.
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_human_resources__employee
+    description: >
+      Informações sobre os funcionários, incluindo dados de identificação e outros detalhes relacionados.
+    columns:
+      - name: sk_funcionario
+        description: >
+          Chave primária da tabela de funcionários.
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_human_resources__employee_department_history
+    description: >
+      Histórico dos departamentos pelos quais os funcionários passaram, incluindo datas e alterações.
+    columns:
+      - name: sk_historico_departamento_funcionario
+        description: >
+          Chave primária da tabela de histórico de departamentos dos funcionários.
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_human_resources__employee_pay_history
+    description: >
+      Histórico de pagamentos dos funcionários, incluindo salários e alterações ao longo do tempo.
+    columns:
+      - name: sk_hisotrico_pagamento_funcionario
+        description: >
+          Chave primária da tabela de histórico de pagamentos dos funcionários.
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_human_resources__job_candidated
+    description: >
+      Informações sobre candidatos a vagas, incluindo dados de candidatura e status.
+    columns:
+      - name: pk_candidato_vaga
+        description: >
+          Chave primária da tabela de candidatos a vagas.
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_human_resources__shift
+    description: >
+      Detalhes sobre os turnos de trabalho dos funcionários, incluindo horários e atribuições.
+    columns:
+      - name: pk_turno
+        description: >
+          Chave primária da tabela de turnos de trabalho.
+        tests:
+          - unique
+          - not_null
