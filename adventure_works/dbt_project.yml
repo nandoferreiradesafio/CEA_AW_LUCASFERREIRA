@@ -53,13 +53,6 @@ models:
       +materialized: table
       +schema: raw
 
-    dbo:
-      +tags: dbo
-      staging: *staging
-      intermediate: *intermediate
-      mart: *mart
-      +schema: dbo
-
     human_resources:
       +tags: human_resources
       staging: *staging
