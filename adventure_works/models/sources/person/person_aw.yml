@@ -1,0 +1,390 @@
+version: 2
+
+sources:
+  - name: RAW_ADVENTURE_WORKS
+    database: FEA24_11
+    schema: RAW_ADVENTURE_WORKS
+    description: >
+      Fonte de dados bruta do Adventure Works.
+    config:
+      enabled: true
+    tables:
+      - name: ADDRESS
+        description: >
+          Informações sobre endereços de rua para clientes, funcionários e fornecedores.
+        columns:
+          - name: ADDRESSID
+            description: >
+              Chave primária para registros de endereço.
+          - name: ADDRESSLINE1
+            description: >
+              Primeira escolha do endereço da rua.
+          - name: ADDRESSLINE2
+            description: >
+              Segunda escolha do endereço da rua.
+          - name: CITY
+            description: >
+              Nome da cidade
+          - name: STATEPROVINCEID
+            description: >
+              Número de identificação exclusiva para o estado ou província. Chave estrangeira para a tabela de províncias do estado.
+          - name: POSTALCODE
+            description: >
+              Código postal para o endereço da rua.
+          - name: SPATIALLOCATION
+            description: >
+              Latitude e longitude deste endereço.
+          - name: ROWGUID
+            description: >
+              Identificador exclusivo global para a linha.
+          - name: MODIFIEDDATE
+            description: >
+              Data e hora em que a linha foi modificada pela última vez.
+      
+      - name: ADDRESSTYPE
+        description: >
+          Tipos de endereços armazenados na tabela de endereços.
+        columns:
+          - name: ADDRESSTYPEID
+            description: >
+              Chave primária para registros de endereço.
+          - name: NAME
+            description: >
+              Descrição do tipo de endereço. Por exemplo, cobrança, casa ou envio.
+          - name: ROWGUID
+            description: >
+              Identificador exclusivo global para a linha.
+          - name: MODIFIEDDATE
+            description: >
+              Data e hora em que a linha foi modificada pela última vez.
+
+      - name: BUSINESSENTITY
+        descripton: >
+          Fonte do ID que conecta fornecedores, clientes e funcionários com informações de endereço e contato.
+        columns:
+          - name: BUSINESSENTITYID
+            description: >
+              Chave primária para todos os clientes, fornecedores e funcionários.
+          - name: ROWGUID
+            description: >
+              Identificador exclusivo global para a linha.
+          - name: MODIFIEDDATE
+            description: >
+              Data e hora em que a linha foi modificada pela última vez.
+
+      - name: BUSINESSENTITYADDRESS
+        description: >
+          Os clientes, fornecedores e funcionários de mapeamento de tabela de referências cruzadas para seus endereços.
+        columns:
+          - name: BUSINESSENTITYID
+            description: >
+              Chave primária. Chave estrangeira para BusinessEntity.businessentityId.
+          - name: ADDRESSID
+            description: >
+              Chave primária. Chave estrangeira para endereçar.Addressid.
+          - name: ADDRESSTYPEID
+            description: >
+              Chave primária. Chave estrangeira para endereçarype.addressTypeid.
+          - name: ROWGUID
+            description: >
+              Identificador exclusivo global para a linha.
+          - name: MODIFIEDDATE
+            description: >
+              Data e hora em que a linha foi modificada pela última vez.
+
+      - name: BUSINESSENTITYCONTACT
+        description: >
+          Mapping de tabela de referências cruzadas lojas, fornecedores e funcionários para pessoas
+        columns:
+          - name: BUSINESSENTITYID
+            description: >
+              Chave primária. Chave estrangeira para BusinessEntity.businessentityId.
+          - name: PERSONID
+            description: >
+              Chave primária. Chave estrangeira para Pessoa. BusinessentityId.
+          - name: CONTACTTYPEID
+            description: >
+              Chave primária. Chave estrangeira para contactType.ContactTypeID.
+          - name: ROWGUID
+            description: >
+              Identificador exclusivo global para a linha.
+          - name: MODIFIEDDATE
+            description: >
+              Data e hora em que a linha foi modificada pela última vez.
+
+      - name: CONTACTTYPE
+        description: >
+          Tabela de pesquisa contendo os tipos de contatos de entidade comercial.
+        columns:
+          - name: CONTACTTYPEID
+            description: >
+              Chave primária para registros de contactType.
+          - name: NAME
+            description: >
+              Descrição do tipo de contato.
+          - name: MODIFIEDDATE
+            description: >
+              Data e hora em que a linha foi modificada pela última vez.
+
+      - name: COUNTRYREGION
+        description: >
+          Tabela de pesquisa contendo os códigos padrão ISO para países e regiões.
+        columns:
+          - name: COUNTRYREGIONCODE
+            description: >
+              Código padrão ISO para países e regiões.
+          - name: NAME
+            description: >
+              Nome do país ou região.
+          - name: MODIFIEDDATE
+            description: >
+              Data e hora em que a linha foi modificada pela última vez.
+
+      - name: EMAILADDRESS
+        description: >
+          Para onde enviar um e -mail de uma pessoa.
+        columns:
+          - name: BUSINESSENTITYID
+            description: >
+              Chave primária. Pessoa associada a este endereço de e -mail. Chave estrangeira para Person.businessentityId
+          - name: EMAILADDRESSID
+            description: >
+              Chave primária. ID deste endereço de e -mail.
+          - name: EMAILADDRESS
+            description: >
+              Endereço de e-mail para a pessoa.
+          - name: ROWGUID
+            description: >
+              Identificador exclusivo global para a linha.
+          - name: MODIFIEDDATE
+            description: >
+              Data e hora em que a linha foi modificada pela última vez.
+
+      - name: PERSON
+        description: >
+          Contém informações sobre pessoas, incluindo clientes, funcionários e fornecedores.
+        columns:
+          - name: BUSINESSENTITYID
+            description: >
+              Identificador único da entidade de negócio. Chave primária da tabela.
+          - name: PERSONTYPE
+            description: >
+              Tipo de pessoa (C = Cliente, E = Funcionário, V = Fornecedor, etc.).
+          - name: NAMESTYLE
+            description: >
+              Indica se o nome segue o formato ocidental (false) ou oriental (true).
+          - name: TITLE
+            description: >
+              Título da pessoa (exemplo: Sr., Sra., Dr., etc.).
+          - name: FIRSTNAME
+            description: >
+              Primeiro nome da pessoa.
+          - name: MIDDLENAME
+            description: >
+              Nome do meio da pessoa (pode ser nulo).
+          - name: LASTNAME
+            description: >
+              Sobrenome da pessoa.
+          - name: SUFFIX
+            description: >
+              Sufixo do nome da pessoa (exemplo: Jr., Sr., III).
+          - name: EMAILPROMOTION
+            description: >
+              Indica a participação da pessoa em campanhas de e-mail marketing (0 = Nenhuma, 1 = Algumas, 2 = Todas).
+          - name: ADDITIONALCONTACTINFO
+            description: >
+              Informações de contato adicionais no formato XML ou JSON.
+          - name: DEMOGRAPHICS
+            description: >
+              Informações demográficas da pessoa, como idade, renda e estado civil (armazenado como XML ou JSON).
+          - name: ROWGUID
+            description: >
+              Identificador global único (GUID) da linha para controle de integridade.
+          - name: MODIFIEDDATE
+            description: >
+              Data e hora da última modificação do registro.
+
+      - name: PERSONPHONE
+        description: >
+          Armazena os números de telefone associados a pessoas no sistema.
+        columns:
+          - name: BUSINESSENTITYID
+            description: >
+              Identificador único da entidade de negócio associada ao número de telefone. Chave estrangeira para a tabela PERSON.
+          - name: PHONENUMBER
+            description: >
+              Número de telefone da pessoa, incluindo código de área se aplicável.
+          - name: PHONENUMBERTYPEID
+            description: >
+              Identificador do tipo de telefone (exemplo: 1 = Celular, 2 = Comercial, 3 = Residencial). Chave estrangeira para a tabela PHONENUMBERTYPE.
+          - name: MODIFIEDDATE
+            description: >
+              Data e hora da última modificação do registro.
+
+      - name: PHONENUMBERTYPE
+        description: >
+          Contém os tipos de número de telefone cadastrados no sistema.
+        columns:
+          - name: PHONENUMBERTYPEID
+            description: >
+              Identificador único do tipo de número de telefone. Chave primária da tabela.
+          - name: NAME
+            description: >
+              Nome do tipo de número de telefone (exemplo: Celular, Comercial, Residencial).
+          - name: MODIFIEDDATE
+            description: >
+              Data e hora da última modificação do registro.
+
+      - name: STATEPROVINCE
+        description: >
+          Contém informações sobre estados ou províncias dentro de um país ou região.
+        columns:
+          - name: STATEPROVINCEID
+            description: >
+              Identificador único do estado ou província. Chave primária da tabela.
+          - name: STATEPROVINCECODE
+            description: >
+              Código do estado ou província (exemplo: SP, NY, TX).
+          - name: COUNTRYREGIONCODE
+            description: >
+              Código do país ou região ao qual o estado ou província pertence.
+          - name: ISONLYSTATEPROVINCEFLAG
+            description: >
+              Indica se o estado ou província é o único do país/região (true = Sim, false = Não).
+          - name: NAME
+            description: >
+              Nome do estado ou província.
+          - name: TERRITORYID
+            description: >
+              Identificador do território ao qual o estado ou província pertence.
+          - name: ROWGUID
+            description: >
+              Identificador global único (GUID) da linha para controle de integridade.
+          - name: MODIFIEDDATE
+            description: >
+              Data e hora da última modificação do registro.
+
+
+models:
+  - name: stg_person__address
+    description: >
+      Informações sobre endereços de rua para clientes, funcionários e fornecedores.
+    columns:
+      - name: pk_endereco
+        description: >
+          Chave primaria da tabela de endereços
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_person__address_type
+    description: >
+      Tipos de endereços armazenados na tabela de endereços.
+    columns:
+      - name: pk_tipo_endereco
+        description: >
+          Chave primaria da tabela de tipos de endereços
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_person__business_entity
+    description: >
+      Fonte do ID que conecta fornecedores, clientes e funcionários com informações de endereço e contato.
+    columns:
+      - name: pk_entidade_empresarial
+        description: >
+          Chave primaria da tabela de tipos de endereços
+        tests:
+          - unique
+          - not_null
+
+  - name: stg_person__business_entity_address
+    description: >
+      Os clientes, fornecedores e funcionários de mapeamento de tabela de referências cruzadas para seus endereços.
+    columns:
+      - name: sk_endereco_entidade_empresarial
+        description: >
+          Chave estrangeira da tabela de endereços das entidades empresariais
+        test:
+          - unique
+          - not_null
+
+  - name: stg_person__business_entity_contact
+    description: >
+      Os clientes, fornecedores e funcionários de mapeamento de tabela de referências cruzadas para seus endereços.
+    columns:
+      - name: sk_contato_entidade_empresarial
+        description: >
+          Chave estrangeira da tabela de contato das entidades empresariais
+        test:
+          - unique
+          - not_null
+
+  - name: stg_person__contact_type
+    description: >
+      Tabela de pesquisa contendo os tipos de contatos de entidade comercial.
+    columns:
+      - name: pk_tipo_contato
+        description: >
+          Chave primaria da tabela de tipos de contato
+        test:
+          - unique
+          - not_null
+
+  - name: stg_person__country_region
+    description: >
+      Tabela de pesquisa contendo os códigos padrão ISO para países e regiões.
+    columns:
+      - name: codigo_regiao_pais
+        description: >
+          Chave estrangeira da tabela de contato das entidades empresariais
+        test:
+          - unique
+          - not_null
+
+  - name: stg_person__email_address
+    description: >
+      Para onde enviar um e -mail de uma pessoa.
+    columns:
+      - name: pk_email
+        description: >
+        test:
+          - unique
+          - not_null
+
+  - name: stg_person__person
+    decription: >
+    columns:
+      - name: sk_pessoa
+        description: >
+        test:
+          - unique
+          - not_null
+  
+  - name: stg_person__person_phone
+    decription: >
+    columns:
+      - name: sk_telefone_pessoa
+        description: >
+        test:
+          - unique
+          - not_null
+
+  - name: stg_person__phone_number_type
+    decription: >
+    columns:
+      - name: pk_tipo_telefone
+        description: >
+        test:
+          - unique
+          - not_null
+
+  - name: stg_person__state_province
+    decription: >
+    columns:
+      - name: pk_estado_provincia
+        description: >
+        test:
+          - unique
+          - not_null
