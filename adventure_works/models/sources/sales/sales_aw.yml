@@ -709,7 +709,7 @@ models:
     description: >
       Informações sobre lojas.
     columns:
-      - name: pk_entidade_negocio
+      - name: sk_loja
         description: >
           Chave primária da tabela.
         tests:
