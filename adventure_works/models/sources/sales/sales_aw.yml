@@ -588,7 +588,7 @@ models:
     description: >
       Relacionamento entre cabeçalho de pedido de vendas e motivo de vendas.
     columns:
-      - name: sk_pedido_venda_movito_venda
+      - name: sk_pedido_venda_razao_venda
         description: >
           Chave substituta da tabela.
         tests:

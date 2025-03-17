@@ -353,17 +353,6 @@ models:
           - unique
           - not_null
 
-  - name: stg_person__email_address
-    description: >
-      Endereço de e-mail associado a uma pessoa para comunicação.
-    columns:
-      - name: pk_email
-        description: >
-          Chave primária da tabela de endereços de e-mail.
-        tests:
-          - unique
-          - not_null
-
   - name: stg_person__person
     description: >
       Informações pessoais, incluindo dados de identificação e características de cada pessoa.

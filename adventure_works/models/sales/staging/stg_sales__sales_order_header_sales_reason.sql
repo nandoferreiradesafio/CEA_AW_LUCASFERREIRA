@@ -9,7 +9,7 @@ with
     , renomear as (
         select
             try_cast(salesorderid as int) as fk_pedido_venda
-            , try_cast(salesreasonid as int) as fk_motivo_venda
+            , try_cast(salesreasonid as int) as fk_razao_venda
             , try_cast(modifieddate as date) as data_modificacao
         from sales_order_header_sales_reason
     )
@@ -18,8 +18,8 @@ with
         select
             {{ dbt_utils.generate_surrogate_key([
                 'fk_pedido_venda'
-                , 'fk_motivo_venda'
-            ]) }} as sk_pedido_venda_movito_venda
+                , 'fk_razao_venda'
+            ]) }} as sk_pedido_venda_razao_venda
             , *
         from renomear
     )
