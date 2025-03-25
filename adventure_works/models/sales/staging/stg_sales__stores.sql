@@ -10,7 +10,10 @@ with
         select
             try_cast(businessentityid as int) as fk_entidade_empresarial
             , try_cast(salespersonid as int) as fk_vendedor
-            , try_cast(name as string) as nome_loja
+            , case
+                when name is null or trim(name) = '' then 'Não Informado'
+                else name
+            end as nome_loja
             , try_cast(demographics as string) as dados_demograficos
             , try_cast(rowguid as string) as rowguid
             , try_cast(modifieddate as date) as data_modificacao

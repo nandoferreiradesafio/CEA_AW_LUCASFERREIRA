@@ -26,7 +26,10 @@ with
                 when status = 6 then 'Cancelado'
             end as status_pedido
             , cast(revisionnumber as int) as numero_revisao
-            , cast(onlineorderflag as boolean) as indicador_pedido_online
+            , case
+                when onlineorderflag = True then  'Online'
+                else 'Presencial'
+            end as indicador_pedido_online
             , cast(purchaseordernumber as string) as numero_ordem_compra
             , cast(accountnumber as string) as numero_conta
             , cast(creditcardapprovalcode as string) as codigo_aprovacao_cartao
