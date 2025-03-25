@@ -1,0 +1,33 @@
+version: 2
+
+models:
+  - name: dim_customers
+    description: 'Dimensão que armazena informações transformadas sobre clientes a partir dos dados de pedidos de venda, clientes, lojas e pessoas.'
+    columns:
+      - name: pk_cliente
+        description: 'Chave estrangeira que referencia o cliente associado ao pedido de venda.'
+        tests:
+          - not_null
+      - name: fk_pessoa
+        description: 'Chave estrangeira que referencia a pessoa associada ao cliente.'
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_sales__customers')
+              field: fk_entidade_empresarial
+      - name: fk_entidade_negocio
+        description: 'Chave estrangeira que referencia a entidade de negócio associada à pessoa.'
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_person__person')
+              field: fk_loja
+      - name: nome_completo
+        description: 'Nome completo do cliente, composto de acordo com as informações disponíveis.'
+      - name: nome_loja
+        description: 'Nome da loja associada ao cliente.'
+      - name: sk_cliente
+        description: 'Chave substituta (surrogate key) gerada para a dimensão do cliente.'
+        tests:
+          - unique
+          - not_null
