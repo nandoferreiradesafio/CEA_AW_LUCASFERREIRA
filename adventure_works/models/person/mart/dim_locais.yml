@@ -1,0 +1,24 @@
+version: 2
+
+models:
+  - name: dim_locais
+    description: 'Dimensão que armazena informações sobre as localizações associadas aos endereços de faturamento dos pedidos, incluindo país, estado/província e cidade.'
+    columns:
+      - name: sk_locais
+        description: 'Chave substituta (surrogate key) gerada para identificar unicamente cada localização com base no endereço de faturamento.'
+        tests:
+          - unique
+          - not_null
+      - name: fk_endereco_faturamento
+        description: 'Chave estrangeira que referencia o endereço de faturamento do pedido.'
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_person__address')
+              field: pk_endereco
+      - name: nome_regiao_pais
+        description: 'Nome da região ou país relacionado ao endereço de faturamento.'
+      - name: nome_cidade
+        description: 'Nome da cidade relacionada ao endereço de faturamento.'
+      - name: nome_estado_provincia
+        description: 'Nome do estado ou província relacionado ao endereço de faturamento.'
