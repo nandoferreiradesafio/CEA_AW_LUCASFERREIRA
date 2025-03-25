@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: agg_salesperson_salesregion
+    description: "Modelo que agrega dados de clientes, produtos, pedidos e informações geográficas para análises no Data Warehouse."
+    columns:
+      - name: nome_pais
+        description: "Nome do país onde o pedido foi realizado."
+      - name: nome_estado_provincia
+        description: "Nome do estado onde o pedido foi realizado."
+      - name: nome_categoria
+        description: "Categoria à qual o produto pertence."
+      - name: total_itens
+        description: "Quantidade total de itens vendidos na combinação de país, estado e categoria de produto."
+        tests:
+          - not_null
+      - name: receita_total
+        description: "Receita total gerada (quantidade_pedido * preco_unitario) por país, estado e categoria de produto."
+        tests:
+          - not_null

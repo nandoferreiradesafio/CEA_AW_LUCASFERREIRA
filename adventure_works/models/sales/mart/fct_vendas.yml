@@ -1,0 +1,119 @@
+version: 2
+
+models:
+  - name: fact_sales
+    description: 'Tabela fato que armazena informações detalhadas sobre as vendas, incluindo informações de clientes, produtos, endereços, cartões de crédito, motivos de venda, além de detalhes financeiros do pedido.'
+    columns:
+      - name: sk_fato_sales
+        description: 'Chave substituta (surrogate key) gerada para identificar unicamente cada fato de venda com base nos atributos chave do pedido e produto.'
+        tests:
+          - unique
+          - not_null
+
+      - name: fk_pedido_venda
+        description: 'Chave estrangeira que referencia o pedido de venda.'
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_erp__salesorderheader')
+              field: pk_pedido_venda
+
+      - name: fk_produto
+        description: 'Chave estrangeira que referencia o produto associado ao pedido de venda.'
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_products')
+              field: fk_produto
+
+      - name: fk_cliente
+        description: 'Chave estrangeira que referencia o cliente associado ao pedido de venda.'
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_customers')
+              field: fk_cliente
+
+      - name: fk_vendedor
+        description: 'Chave estrangeira que referencia o vendedor associado ao pedido de venda.'
+
+      - name: fk_territorio
+        description: 'Chave estrangeira que referencia o território de vendas associado ao pedido de venda.'
+        tests:
+          - not_null
+
+      - name: fk_endereco_faturamento
+        description: 'Chave estrangeira que referencia o endereço de faturamento associado ao pedido de venda.'
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_locations')
+              field: fk_endereco_faturamento
+
+      - name: fk_cartao_credito
+        description: 'Chave estrangeira que referencia o cartão de crédito associado ao pedido de venda.'
+
+      - name: quantidade_pedido
+        description: 'Quantidade de produtos solicitados no pedido de venda.'
+        tests:
+          - not_null
+
+      - name: preco_unitario
+        description: 'Preço unitário do produto no pedido de venda.'
+        tests:
+          - not_null
+
+      - name: desconto_preco_unitario
+        description: 'Desconto aplicado ao preço unitário do produto.'
+        tests:
+          - not_null
+
+      - name: valor_pago_produto
+        description: 'Valor total pago pelo produto, considerando o preço unitário e os descontos aplicados.'
+        tests:
+          - not_null
+
+      - name: motivo_agregado
+        description: 'Motivo de venda agregado ao pedido, caso disponível. Caso contrário, o valor será "Sem informacao".'
+        tests:
+          - not_null
+
+      - name: status_pedido
+        description: 'Status do pedido de venda.'
+        tests:
+          - not_null
+
+      - name: indicador_pedido_online
+        description: 'Indica se o pedido foi realizado online.'
+        tests:
+          - not_null
+
+      - name: subtotal
+        description: 'Subtotal do pedido de venda (sem impostos e frete).'
+        tests:
+          - not_null
+
+      - name: valor_imposto
+        description: 'Valor dos impostos aplicados ao pedido.'
+        tests:
+          - not_null
+
+      - name: frete
+        description: 'Valor do frete cobrado no pedido.'
+        tests:
+          - not_null
+
+      - name: total_pagar
+        description: 'Valor total a pagar pelo pedido, incluindo impostos e frete.'
+        tests:
+          - not_null
+
+      - name: data_pedido
+        description: 'Data em que o pedido foi realizado.'
+        tests:
+          - not_null
+
+      - name: data_envio
+        description: 'Data em que o pedido foi enviado.'
+        tests:
+          - not_null
