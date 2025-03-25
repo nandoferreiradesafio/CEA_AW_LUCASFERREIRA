@@ -1,0 +1,26 @@
+version: 2
+
+models:
+  - name: dim_cartoes_credito
+    description: 'Dimensão que armazena informações transformadas de cartões de crédito a partir dos dados de pedidos de venda e cartões de crédito.'
+    columns:
+      - name: fk_cartao_credito
+        description: 'Chave estrangeira que referencia o cartão de crédito associado ao pedido de venda.'
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_erp__creditcard')
+              field: pk_cartao_credito
+      - name: tipo_cartao  
+        description: 'Tipo do cartão de crédito.'
+      - name: numero_cartao
+        description: 'Número do cartão de crédito.'
+      - name: mes_expiracao
+        description: 'Mês de expiração do cartão de crédito.'
+      - name: ano_expiracao
+        description: 'Ano de expiração do cartão de crédito.'
+      - name: sk_cartao_credito
+        description: 'Chave substituta (surrogate key) gerada para a dimensão do cartão de crédito.'
+        tests:
+          - unique
+          - not_null
