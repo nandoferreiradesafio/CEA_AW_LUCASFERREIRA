@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: dim_motivo_vendas
+    description: 'Dimensão que agrega os motivos de venda relacionados a cada pedido, gerando uma lista de motivos e uma chave substituta para cada pedido de venda.'
+    columns:
+      - name: fk_pedido_venda
+        description: 'Chave estrangeira que referencia o pedido de venda associado aos motivos de venda.'
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_sales__sales_order_header_sales_reason')
+              field: fk_pedido_venda
+      - name: nome_motivo_agregado
+        description: 'Lista de motivos de venda associados ao pedido de venda. Caso não haja motivos, o valor será "Sem Motivo".'
+      - name: sk_motivo_vendas
+        description: 'Chave substituta (surrogate key) gerada para identificar unicamente cada conjunto de motivos de venda agregados por pedido.'
+        tests:
+          - unique
+          - not_null
