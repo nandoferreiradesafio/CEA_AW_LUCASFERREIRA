@@ -59,9 +59,6 @@ A **Adventure Works (AW)** é uma indústria de bicicletas em rápido cresciment
 
 # Como Instalar e Rodar um Projeto dbt
 
-## Introdução
-Este guia tem como objetivo orientar profissionais na instalação, configuração e execução de um projeto utilizando o dbt (Data Build Tool). O material cobre desde a preparação do ambiente até os primeiros comandos necessários para operacionalizar o pipeline de dados com boas práticas.
-
 ## Pré-requisitos
 - Python instalado (recomendado: versão 3.8 ou superior).
 - Git instalado.
