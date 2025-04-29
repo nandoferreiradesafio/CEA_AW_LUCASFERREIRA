@@ -56,10 +56,105 @@ A **Adventure Works (AW)** é uma indústria de bicicletas em rápido cresciment
 - **Modelos de Previsão de Demanda:**
   - Técnicas de Machine Learning para antecipar a demanda futura, otimizar a produção e analisar diferentes cenários estratégicos.
 
-## Contribuição
 
-Contribuições são bem-vindas! Por favor, abra uma *issue* ou envie um *pull request* para discutir melhorias ou novas funcionalidades.
+# Como Instalar e Rodar um Projeto dbt
 
-## Licença
+## Introdução
+Este guia tem como objetivo orientar profissionais na instalação, configuração e execução de um projeto utilizando o dbt (Data Build Tool). O material cobre desde a preparação do ambiente até os primeiros comandos necessários para operacionalizar o pipeline de dados com boas práticas.
 
-Este projeto está licenciado sob a [MIT License](LICENSE).
+## Pré-requisitos
+- Python instalado (recomendado: versão 3.8 ou superior).
+- Git instalado.
+- Acesso a uma conta Snowflake (ou outro banco suportado).
+- Um terminal (Prompt de Comando, Terminal Mac/Linux, ou VS Code Terminal).
+
+## Passo 1: Instalar o dbt
+**1.1. Instale o dbt via pip:**
+```bash
+pip install dbt-snowflake
+```
+
+**1.2. Verifique se o dbt foi instalado corretamente:**
+```bash
+dbt --version
+```
+
+## Passo 2: Clonar o Repositório do Projeto
+**2.1. Clone o projeto para sua máquina:**
+```bash
+git clone https://github.com/seu-usuario/seu-projeto.git
+cd seu-projeto
+```
+(Substitua `seu-usuario/seu-projeto` pelo repositório correto.)
+
+## Passo 3: Configurar a Conexão com o Banco de Dados
+O dbt precisa saber onde e como se conectar.
+
+**3.1. Crie o arquivo `profiles.yml`:**
+
+No Windows: `%USERPROFILE%\.dbt\profiles.yml`  
+No Mac/Linux: `~/.dbt/profiles.yml`
+
+**Exemplo de `profiles.yml` para Snowflake:**
+```yaml
+adventure_works:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: seu_conta_id
+      user: seu_usuario
+      password: sua_senha
+      role: seu_papel
+      database: seu_banco
+      warehouse: seu_armazem
+      schema: seu_esquema
+      threads: 1
+      client_session_keep_alive: False
+```
+⚡ *Troque as informações acima para o seu ambiente.*
+
+## Passo 4: Rodar o Projeto dbt
+
+**4.1. Testar a conexão:**
+```bash
+dbt debug
+```
+
+**4.2. Compilar e executar os modelos:**
+```bash
+dbt run
+```
+
+**4.3. (Opcional) Rodar testes:**
+```bash
+dbt test
+```
+
+**4.4. (Opcional) Gerar e visualizar a documentação:**
+```bash
+dbt docs generate
+dbt docs serve
+```
+
+## Estrutura Básica do Projeto
+- `models/`: Transformações em SQL.
+- `seeds/`: Arquivos CSV de dados estáticos.
+- `snapshots/`: Histórico de alterações de dados.
+- `macros/`: Funções SQL reutilizáveis.
+- `tests/`: Testes de dados.
+- `dbt_project.yml`: Arquivo de configuração principal.
+
+## Dicas Importantes
+- Esteja na pasta do projeto antes de rodar comandos.
+- O dbt é declarativo: você descreve o que quer construir.
+- Mantenha seu ambiente atualizado para evitar incompatibilidades.
+
+## Problemas Comuns
+- **Erro de conexão**: Revise seu `profiles.yml`.
+- **Comando não encontrado**: Confirme se o dbt foi instalado corretamente.
+- **Modelos não encontrados**: Confira o diretório e o `dbt_project.yml`.
+
+## Recursos Úteis
+- [Documentação oficial do dbt](https://docs.getdbt.com/)
+- [Configuração de perfil Snowflake](https://docs.getdbt.com/reference/warehouse-profiles/snowflake-profile)
