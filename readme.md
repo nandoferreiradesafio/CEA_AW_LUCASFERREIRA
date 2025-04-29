@@ -22,9 +22,9 @@ A **Adventure Works (AW)** é uma indústria de bicicletas em rápido cresciment
    - Funções reutilizáveis escritas em SQL, como `generate_schema_name.sql`, para gerar nomes de esquemas dinâmicos.
 
 3. **Modelos (`models`):**
-   - **Staging (`staging/erp`):** Extrai e transforma dados brutos de sistemas ERP.
-   - **Marts (`marts/comercial`):** Contém tabelas de dimensões (`dim_`) e fatos (`fact_`) para análises de vendas.
-      - Exemplos: `dim_customers.sql`, `fact_sales.sql`, `agg_salesperson_salesregion.sql`
+   - **Staging (`sales/staging`):** Extrai e transforma dados brutos de sistemas ERP.
+   - **Marts (`sales/marts`):** Contém tabelas de dimensões (`dim_`) e fatos (`fct_`) para análises de vendas.
+      - Exemplos: `dim_clientes.sql`, `fct_vendas.sql`, `agg_regioes_motivos_vendas.sql`
 
 4. **Sementes (`seeds`):**
    - Arquivos CSV com dados estáticos ou de referência, organizados por áreas de negócio como `human_resources`, `production` e `sales`.
@@ -79,10 +79,9 @@ dbt --version
 ## Passo 2: Clonar o Repositório do Projeto
 **2.1. Clone o projeto para sua máquina:**
 ```bash
-git clone https://github.com/seu-usuario/seu-projeto.git
-cd seu-projeto
+git clone https://github.com/nandoferreiradesafio/CEA_AW_LUCASFERREIRA.git
+cd cea_aw_lucasferreira
 ```
-(Substitua `seu-usuario/seu-projeto` pelo repositório correto.)
 
 ## Passo 3: Configurar a Conexão com o Banco de Dados
 O dbt precisa saber onde e como se conectar.
@@ -109,7 +108,7 @@ adventure_works:
       threads: 1
       client_session_keep_alive: False
 ```
-⚡ *Troque as informações acima para o seu ambiente.*
+*Troque as informações acima para o seu ambiente.*
 
 ## Passo 4: Rodar o Projeto dbt
 
