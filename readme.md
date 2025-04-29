@@ -24,7 +24,7 @@ A **Adventure Works (AW)** é uma indústria de bicicletas em rápido cresciment
 3. **Modelos (`models`):**
    - **Staging (`staging/erp`):** Extrai e transforma dados brutos de sistemas ERP.
    - **Marts (`marts/comercial`):** Contém tabelas de dimensões (`dim_`) e fatos (`fact_`) para análises de vendas.
-     - Exemplos: `dim_customers.sql`, `fact_sales.sql`, `agg_salesperson_salesregion.sql`
+      - Exemplos: `dim_customers.sql`, `fact_sales.sql`, `agg_salesperson_salesregion.sql`
 
 4. **Sementes (`seeds`):**
    - Arquivos CSV com dados estáticos ou de referência, organizados por áreas de negócio como `human_resources`, `production` e `sales`.
